@@ -1,3 +1,6 @@
+<!-- 
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,13 +19,13 @@
         .column {
             flex: 1;
             padding: 10px;
-           <!-- border: 1px solid #000;-->
+           
         }
 
         .merged-column {
             flex: 3;
             padding: 10px;
-            <!-- border: 1px solid #000;-->
+            
         }
 
         h2 {
@@ -145,3 +148,5 @@
     </div>
 </body>
 </html>
+
+-->
