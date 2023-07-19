@@ -65,7 +65,7 @@
 				</p>
             </div>
             <div class="column">
-                <h2>INVOICE</h2>
+                <h2 style="text-align:center">INVOICE</h2>
                 <table>
                     <tr>
                         <td>Invoice#</td>
@@ -125,28 +125,22 @@
 							Labor 5 hours at $75/hr</br>
 							New Client Discount
 							</br></br></br></br></td>
-                        <td>1</td>
-                        <td>200.00</td>
-						<td>200.00</td>
+                        <td>1</br></br>5</br></br></br></br></br></br></br></br></td>
+                        <td>200</br></br>75</br></br>(50.00)</br></br></br></br></br></br></td>
+						<td>200</br></br>375</br></br>(50.00)</br>-</br>-</br>-</br>-</br>-</br></td>
                     </tr>
                     <tr>
-                        <td>Row 2, Column 1</td>
-                        <td>Row 2, '
-						
-						dfsfsadf
-						asdfdsf
-						afdsfd</br>
-						saddfdsa</br>
-						Column 2</td>
-                        <td>Row 2, Column 3</td>
+                        <td>Thank you for your business!</td>
+                        <td>Total</td>
+						<td></td>
+                        <td>525.00</td>
                     </tr>
-                    <tr>
-                        <td>Row 3, Column 1</td>
-                        <td>Row 3, Column 2</td>
-                        <td>Row 3, Column 3</td>
-                    </tr>
+                   
 					
                 </table>
+				
+				<p style= "text-align: center">If you have any questions about this invoice, please contact</br>
+				[Jos Buttler, 011-012-4532, johnbut134@gmail.com]</p>
             </div>
         </div>
     </div>
