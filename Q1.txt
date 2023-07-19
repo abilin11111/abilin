@@ -204,42 +204,7 @@
 
 
 
-******************************Table*********************************
 
-<!docktype html>
-<html>
-<head>
-<style>
-table,th,td{border:3px solid black;
-			border-collapse:collapse;
-}
-th,td{padding:8px;
-	text-align:left;}
-</style>
-</head>
-<body>
-<table style="width:100%">
-	<tr>
-		<th>name</th>
-		<td>bii</td>
-	</tr>
-	<tr>
-	<th rowspan="2">telephone</th>
-		<td>667889465</td>
-	</tr>
-	<tr>
-		<td>733356</td>
-	</tr>
-	<tr>
-	<th colspan="2">age</th>
-	<td>78</td>
-	</table>
-</body>
-
-</html>
-
-</html>
-*******************************************************************
 *****************************CA1 Atm Data*********************************
 <!DOCTYPE html>
 <html>
@@ -604,6 +569,44 @@ institution are known as "white-label" ATMs.</p>
     </body>
 </html>
 **********************************************************************************
+
+
+
+******************************Table*********************************
+
+<!docktype html>
+<html>
+<head>
+<style>
+table,th,td{border:3px solid black;
+			border-collapse:collapse;
+}
+th,td{padding:8px;
+	text-align:left;}
+</style>
+</head>
+<body>
+<table style="width:100%">
+	<tr>
+		<th>name</th>
+		<td>bii</td>
+	</tr>
+	<tr>
+	<th rowspan="2">telephone</th>
+		<td>667889465</td>
+	</tr>
+	<tr>
+		<td>733356</td>
+	</tr>
+	<tr>
+	<th colspan="2">age</th>
+	<td>78</td>
+	</table>
+</body>
+
+</html>
+
+*******************************************************************
 
 
 
