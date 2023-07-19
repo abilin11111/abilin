@@ -416,122 +416,117 @@ institution are known as "white-label" ATMs.</p>
 *****************************CA3 Addmissions Form*********************************
 
 
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>Admissions forms</title>
-    </head>
-    <body>
+<head>
+    <title>Admissions forms</title>
+      <style>
+        
+        tr {
+            line-height: 1.5;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+           
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        h1 {
+            margin-bottom: 10px;
+        }
+        p {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
     <form>
-        <h1>Addmissions Form</h1>
+        <h1>Admissions Form</h1>
         <p>Enter your admission information below</p>
         <hr>
         <table>
             <tr>
                 <td>Name</td>
-                <td><input type="text" name="firstname" required ></td>
-                <td><input type="terxt" name = "middlename" required></td>
-                <td><input type="text" name = "lastname" required></td>
+                <td><input type="text" name="firstname" required></td>
+                <td><input type="text" name="middlename" required></td>
+                <td><input type="text" name="lastname" required></td>
             </tr>
             <tr>
                 <td>Birth Date</td>
-                <td><select>
-                    <option></option>
-                    <option>January</option>
-                    <option>February</option>
-                    <option>March</option>
-                    <option>April</option>
-                    <option>May</option>
-                    <option>June</option>
-                    <option>July</option>
-                    <option>August</option>
-                    <option>September</option>
-                    <option>October</option>
-                    <option>November</option>
-                    <option>December</option>
+                <td>
+                    <select>
+                        <option></option>
+                        <option>January</option>
+                        <!-- Add more options for other months -->
                     </select>
                 </td>
-                <td><select >
-                    <option></option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
+                <td>
+                    <select>
+                        <option></option>
+                        <!-- Add options for the day -->
                     </select>
                 </td>
-                <td><select requiredt>
-                    <option></option>
-                    <option>1999</option>
-                    <option>1998</option>
-                    <option>1997</option>
-                    <option>1996</option>
-                    <option>1995</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Gender</td>
-                <td>
-                    <input type="radio" name="gender" required>Male
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="radio" name="gender" required>Female
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="radio" name="gender" required>Decline to answer
-            </tr>
-            <tr>
-                <td>Are you Hispanic or Latino?</td>
-                <td>
-                    <input type="radio" name="no" required>No
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="radio" name="yes" required>Yes
-            </tr>
-            <tr>
-                <td>race</td>
-                <td>
-                    <input type="checkbox" name="ame" required>American Indian/Alaskan Native
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="checkbox" name="asian" required>Asian
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="checkbox" name="black" required>Black
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="checkbox" name="native" required>Native Huwaiian/ Other Pacific Islander
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="checkbox" name="white" required>White
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="checkbox" name="ans" required>Decline to Answer
-            </tr>
-            <tr>
-                <td>Of which country are you a citizen? </td>
                 <td>
                     <select required>
                         <option></option>
-                        <option>0772479615</option>
+                        <option>1999</option>
+                        <!-- Add more options for other years -->
+                    </select>
+                </td>
+            </tr>
+             <tr>
+                <td>Gender</td>
+                <td colspan="3">
+                    <label><input type="radio" name="gender" required>Male</label><br>
+                    <label><input type="radio" name="gender" required>Female</label><br>
+                    <label><input type="radio" name="gender" required>Decline to answer</label>
+                </td>
+            </tr>
+            <tr>
+                <td>Are you Hispanic or Latino?</td>
+                <td colspan="3">
+                    <label><input type="radio" name="hispanic" required>No</label><br>
+                    <label><input type="radio" name="hispanic" required>Yes</label>
+                </td>
+            </tr>
+            <tr>
+                <td>Race</td>
+                <td colspan="3">
+                    <label><input type="checkbox" name="race" required>American Indian/Alaskan Native</label><br>
+                    <label><input type="checkbox" name="race" required>Asian</label><br>
+                    <label><input type="checkbox" name="race" required>Black</label><br>
+                    <label><input type="checkbox" name="race" required>Native Hawaiian/Other Pacific Islander</label><br>
+                    <label><input type="checkbox" name="race" required>White</label><br>
+                    <label><input type="checkbox" name="race" required>Decline to Answer</label>
+                </td>
+            </tr>
+            <tr>
+                <td>Of which country are you a citizen? </td>
+                <td colspan="3">
+                    <select required>
+                        <option></option>
+                        <option>Country 1</option>
+                        <option>Country 2</option>
+                        <!-- Add more country options -->
                     </select>
                 </td>
             </tr>
@@ -539,35 +534,38 @@ institution are known as "white-label" ATMs.</p>
                 <td>Phone</td>
                 <td><input type="text" name="area" required></td>
                 <td><input type="text" name="phone" required></td>
+                <td></td>
             </tr>
             <tr>
                 <td>E-mail Address</td>
-                <td><input type="email" name="email" placeholder="ex:myname@example.com" required></td>
+                <td colspan="3"><input type="email" name="email" placeholder="ex: myname@example.com" required></td>
             </tr>
             <tr>
                 <td>Mailing Address</td>
-                <td ><input type="text" name="add1" required></td>
+                <td colspan="3"><input type="text" name="add1" required></td>
             </tr>    
-            <tr colspan = "2">
+            <tr>
                 <td></td>
-                <td><input type="text" name="add2" required></td>
+                <td colspan="3"><input type="text" name="add2" required></td>
             </tr>
             <tr>
                 <td></td>
                 <td><input type="text" name="city" required></td>
                 <td><input type="text" name="state" required></td>
+                <td><input type="text" name="postal" required></td>
             </tr>
             <tr>
                 <td></td>
-                <td><input type="text" name="postal" required></td>
-                <td><input type="text" name="country" required></td>
+                <td colspan="2"><input type="text" name="country" required></td>
+                <td></td>
             </tr>
         </table>
         <hr>
         <button>Next</button>
     </form>
-    </body>
+</body>
 </html>
+
 **********************************************************************************
 
 
