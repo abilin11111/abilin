@@ -247,4 +247,162 @@ th,td{padding:8px;
 *******************************************************************
 
 
+*****************************CA3 Addmissions Form*********************************
+
+
+<html>
+    <head>
+        <title>Admissions forms</title>
+    </head>
+    <body>
+    <form>
+        <h1>Addmissions Form</h1>
+        <p>Enter your admission information below</p>
+        <hr>
+        <table>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="firstname" required ></td>
+                <td><input type="terxt" name = "middlename" required></td>
+                <td><input type="text" name = "lastname" required></td>
+            </tr>
+            <tr>
+                <td>Birth Date</td>
+                <td><select>
+                    <option></option>
+                    <option>January</option>
+                    <option>February</option>
+                    <option>March</option>
+                    <option>April</option>
+                    <option>May</option>
+                    <option>June</option>
+                    <option>July</option>
+                    <option>August</option>
+                    <option>September</option>
+                    <option>October</option>
+                    <option>November</option>
+                    <option>December</option>
+                    </select>
+                </td>
+                <td><select >
+                    <option></option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                    </select>
+                </td>
+                <td><select requiredt>
+                    <option></option>
+                    <option>1999</option>
+                    <option>1998</option>
+                    <option>1997</option>
+                    <option>1996</option>
+                    <option>1995</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td>
+                    <input type="radio" name="gender" required>Male
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="radio" name="gender" required>Female
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="radio" name="gender" required>Decline to answer
+            </tr>
+            <tr>
+                <td>Are you Hispanic or Latino?</td>
+                <td>
+                    <input type="radio" name="no" required>No
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="radio" name="yes" required>Yes
+            </tr>
+            <tr>
+                <td>race</td>
+                <td>
+                    <input type="checkbox" name="ame" required>American Indian/Alaskan Native
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="checkbox" name="asian" required>Asian
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="checkbox" name="black" required>Black
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="checkbox" name="native" required>Native Huwaiian/ Other Pacific Islander
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="checkbox" name="white" required>White
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="checkbox" name="ans" required>Decline to Answer
+            </tr>
+            <tr>
+                <td>Of which country are you a citizen? </td>
+                <td>
+                    <select required>
+                        <option></option>
+                        <option>0772479615</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Phone</td>
+                <td><input type="text" name="area" required></td>
+                <td><input type="text" name="phone" required></td>
+            </tr>
+            <tr>
+                <td>E-mail Address</td>
+                <td><input type="email" name="email" placeholder="ex:myname@example.com" required></td>
+            </tr>
+            <tr>
+                <td>Mailing Address</td>
+                <td ><input type="text" name="add1" required></td>
+            </tr>    
+            <tr colspan = "2">
+                <td></td>
+                <td><input type="text" name="add2" required></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="text" name="city" required></td>
+                <td><input type="text" name="state" required></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="text" name="postal" required></td>
+                <td><input type="text" name="country" required></td>
+            </tr>
+        </table>
+        <hr>
+        <button>Next</button>
+    </form>
+    </body>
+</html>
+**********************************************************************************
+
+
 
