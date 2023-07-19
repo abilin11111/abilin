@@ -1,8 +1,10 @@
 
 
 
-***********************************Passpaper 2017/2018******************************************
-***********************************INVOICE*******************************************************
+
+******************************2017/2018 paper******************************
+
+******************************INVOICE******************************
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +29,7 @@
         .merged-column {
             flex: 3;
             padding: 10px;
-            
+           
         }
 
         h2 {
@@ -150,97 +152,60 @@
     </div>
 </body>
 </html>
-
-***********************************************************************************************************
-
+*******************************************************************
 
 
-***********************************Payement Form*****************************************************************
-<!DOCTYPE>
-<html>
 
-<head>
-<title>Payment Form</title>
-<style>
 
-table{
-border:1px solid;
-width:350px;
-height:500px;
-background-color:lightblue;
-}
+******************************Payment Form******************************
+<!DOCKTYPE html>
+<head>payment_form.html</head>
+<body style="background-color:lightblue";>
+	<h1><center>Payment Form</center></h1>
+	<h2>Step1:Your details</h2><br>
+	<form>
+	<fieldset>
+		Name:<input type="text"name="name"value="First and Last name"><br></fieldset>
+		<fieldset>Email:<input type="text"name="email id"value="example@domain.com"><br></fieldset>
+		<fieldset>Phone:<input type="numer"name="phone numober"value="+447500000000"><br>
+	</fieldset>
+	<h2>Step2:Delivary Address</h2>
+		<fieldset>Address:<textarea rows="3"cols="10"name="address"></textarea><br></fieldset>
+		<fieldset>Post code:<input type="number"name="postcode"><br></fieldset>
+		<fieldset>Country:<input type="text"name="country"><br></fieldset>
+	<h3>Step3:card details</h3></br>
+		<fieldset>Card type:<br>
+		<input type="radio"name="visa">Visa
+		<input type="radio"name="AmEx">AmEx
+		<input type="radio"name="Mastercards"value=></fieldset>
+		<fieldset>card number:<input type="number"name="cardnumber"><br></fieldset>
+		<fieldset>Security code:<input type="number"name="security code"><br></fieldset>
+		<fieldset>Name on card:<input type="text"name="name on card"value="Name on card"><br></fieldset>
+		<input type="submit"value="Buy it!">
 
-table th{
-text-align:left;
-}
+	</form>
 
-table td{
-border:1px solid;
-}
-
-table{
-padding-left:10px;
-padding-right:10px;
-}
-
-table{
-margin-left:130px;
-}
-
-label{
-padding-left:5px;
-}
-
-.tr{
-border:none;
-}
-
-td{
-padding-bottom:5px;
-padding-top:5px;
-}
-
-.td{
-padding-bottom:20px;
-padding-top:20px;
-}
-
-</style>
-</head>
-
-<body>
-<form>
-<h3><center>Payment Form</center></h3>
-<table>
-<tr><th>Step1:Your details</th></tr>
-<tr><td><label>name</label><input type="text" placeholder="first and last name"></td></tr>
-<tr><td><label>Email</label><input type="text" placeholder="umanda@"></td></tr>
-<tr><td><label>Phone</label><input type="text" placeholder="02154766"></td></tr>
-
-<tr><th>Step1:Delivary address</th></tr>
-<tr><td><label>Address</label><textarea rows="5" cols="15"></textarea></td></tr>
-<tr><td><label>Post code</label><input type="text"></td></tr>
-<tr><td><label>Country</label><input type="text"></td></tr>
-
-<tr><th>Step1:Card details</th></tr>
-<tr><td class="td"><label>Card type</label><br>
-<input type="radio" name="sula"><label>VISA</label>
-<input type="radio" name="sula"><label>AmEx</label>
-<input type="radio" name="sula"><label>Mastercard</label>
-</td></tr>
-
-<tr><td><label>Card number</label><input type="text"></td></tr>
-<tr><td><label>Security code</label><input type="text"></td></tr>
-<tr><td><label>Name on card</label><input type="text" value="Exact name as on the card"></td></tr>
-
-<tr><td class="tr"><input type="button" value="Buy it!"></td></tr>
-
-</table>
-
-</form>
 </body>
+</html>
 
+*******************************************************************
+
+
+******************************Login Page******************************
+<!DOCHTYPE HTML>
+<html>
+	<head>
+	<title>2017 past paper</title>
+	</head>
+	<body>
+	<h1 style font-size:"6"><center>LOGIN PAGE</center></h1>
+	Username :<br><input type="text"name="name"value="enter user name"><br>
+	Passward :<br><input type="numbers"name="pwd"value="passward">
+	<h1 style="background-color:yellow";><center>Login</center></h1>
+	<input type="checkbox"name="remember me">Remember me
+	<input type="submit"value="cancel">
+	Forgot<a href="link"> passward?</a>
+	</body>
 
 </html>
-***********************************************************************************************************
-
+*******************************************************************
