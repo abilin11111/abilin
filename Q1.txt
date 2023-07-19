@@ -1,5 +1,7 @@
 
 
+
+***********************************Passpaper 2017/2018******************************************
 ***********************************INVOICE*******************************************************
 <!DOCTYPE html>
 <html>
@@ -149,5 +151,96 @@
 </body>
 </html>
 
+***********************************************************************************************************
+
+
+
+***********************************Payement Form*****************************************************************
+<!DOCTYPE>
+<html>
+
+<head>
+<title>Payment Form</title>
+<style>
+
+table{
+border:1px solid;
+width:350px;
+height:500px;
+background-color:lightblue;
+}
+
+table th{
+text-align:left;
+}
+
+table td{
+border:1px solid;
+}
+
+table{
+padding-left:10px;
+padding-right:10px;
+}
+
+table{
+margin-left:130px;
+}
+
+label{
+padding-left:5px;
+}
+
+.tr{
+border:none;
+}
+
+td{
+padding-bottom:5px;
+padding-top:5px;
+}
+
+.td{
+padding-bottom:20px;
+padding-top:20px;
+}
+
+</style>
+</head>
+
+<body>
+<form>
+<h3><center>Payment Form</center></h3>
+<table>
+<tr><th>Step1:Your details</th></tr>
+<tr><td><label>name</label><input type="text" placeholder="first and last name"></td></tr>
+<tr><td><label>Email</label><input type="text" placeholder="umanda@"></td></tr>
+<tr><td><label>Phone</label><input type="text" placeholder="02154766"></td></tr>
+
+<tr><th>Step1:Delivary address</th></tr>
+<tr><td><label>Address</label><textarea rows="5" cols="15"></textarea></td></tr>
+<tr><td><label>Post code</label><input type="text"></td></tr>
+<tr><td><label>Country</label><input type="text"></td></tr>
+
+<tr><th>Step1:Card details</th></tr>
+<tr><td class="td"><label>Card type</label><br>
+<input type="radio" name="sula"><label>VISA</label>
+<input type="radio" name="sula"><label>AmEx</label>
+<input type="radio" name="sula"><label>Mastercard</label>
+</td></tr>
+
+<tr><td><label>Card number</label><input type="text"></td></tr>
+<tr><td><label>Security code</label><input type="text"></td></tr>
+<tr><td><label>Name on card</label><input type="text" value="Exact name as on the card"></td></tr>
+
+<tr><td class="tr"><input type="button" value="Buy it!"></td></tr>
+
+</table>
+
+</form>
+</body>
+
+
+</html>
 ***********************************************************************************************************
 
