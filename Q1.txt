@@ -245,7 +245,213 @@ th,td{padding:8px;
 
 </html>
 *******************************************************************
+*****************************CA1 Atm Data*********************************
+<!DOCTYPE html>
+<html>
+<body>
+<h2 style="text-align:center;">Automated teller machine</h2>
+<p align="center">
+ATMs are known by a variety of names, including automatic teller machine (ATM) in the United <br>
+States (sometimes redundantly as "ATM machine"). In Canada, the term automated banking <br>
+machine (ABM) is used, although ATM is also very commonly used in Canada, with many <br>
+Canadian organizations using ATM over ABM.In British English, the terms cashpoint, cash <br>
+machine and hole in the wall are most widely used. Other terms include any time money, cash line, <br>
+nibank,tyme machine, cash dispenser, cash corner, bankomat, or bancomat.Many ATMs have a <br>
+sign above them indicating the name of the bank or organisation that owns the ATM,and possibly <br>
+including the networks to which it can connect. ATMs that are not operated by a financial <br>
+institution are known as "white-label" ATMs.</p>
 
+<img src="atm.jpg" width="500px" height="350px">
+
+<h4 style="text-align:center;"><u>ATM Machine </u><h4>
+<h3 style="text-align:center;color:red">List of possible instructions to develop a table in HTML</h3>
+<div style="text-align:center;">
+<ol type='a'>
+	<li>Insert the table tag and decide on its dimensions.</li>
+	<li>Add a row with the TR tag.</li>
+	<li>Insert a cell in the newly created row, with dimensions and other characteristics.</li>
+<ol>
+</div>
+<div align="center">
+
+<img align="center" src="gl_logo.png"><img  align="center" src="key_logo.png"><img align="center" src="sky_logo.png">
+</div>
+<h4 style="text-align:center;"><u>Time Table for website development</u></h4>
+<table align="center" border=2px>
+	<tr>
+		<th></th>
+		<th>Monday</th>
+		<th>Tuesday</th>
+		<th>Wednesday</th>
+		<th>Thursday</th>
+		<th>Friday</th>
+	</tr>
+	<tr>
+		<th>6-7pm</th>
+		<td>look at website</td>
+		<td>free</td>
+		<td>implementation</td>
+		<td>free</td>
+		<td>free</td>
+	</tr>
+	<tr>
+		<th>7-8pm</th>
+		<td>take some notes</td>
+		<td>free</td>
+		<td>implementation</td>
+		<td>free</td>
+		<td>free</td>
+	</tr>
+	
+	
+</table>
+<h4 align="right">Color Codes</h4>
+<table align="center" border = 2px>
+<tr>
+<td colspan=2 style=background-color:red>red cell</td>
+
+<tr>
+<tr>
+<td style=background-color:silver >silver cell</td>
+<td style=background-color:gold> gold cell</td>
+<tr>
+
+</table>
+</body>
+</html>
+
+
+
+
+
+**************************************************************************
+
+
+*****************************CA2 Registation Form*********************************
+
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+
+	
+	<table align='center' bgcolor="cyan">
+		<form>
+			<tr>
+			<td colspan=2><h1 align='center'>Student Registration Form</h1></td>
+			
+			</tr>
+			<tr>
+			<td><label> Firstname 	</label></td>
+			<td><input type="text"></input></td>
+			</tr>
+			
+			<tr>
+			<td><label> Father <br> name </label></td>
+			<td><input type="text"></input></td>
+			</tr>
+			
+			<tr>
+			<td><label> Postal <br> Address </label></td>
+			<td><input type="text"></input></td>
+			</tr>
+			
+			<tr>
+			<td><label> Personal <br> Address </label></td>
+			<td><input type="text"></input></td>
+			</tr>
+			
+			<tr>
+			<td><label> Sex</label></td>
+			<td><input type="radio"name='sex' value='male'>Male</input>
+			<input type="radio"name='sex'value='female'>Female</input></td>
+			</tr>
+			
+			<tr>
+			<td><label>City</label></td>
+			<td>
+				<select>
+					<option>Select</option>
+					<option value='batticalo' name='city'>Batticalo</option>
+					<option value='Kalmunai' name='city'>Kalmunai</option>
+					<option value='Ampara' name='city'>Ampara</option>
+				</select>
+			</td>
+			</tr>
+			
+			<tr>
+			<td><label>Course</label></td>
+			<td>
+				<select>
+					<option>Select</option>
+					<option value='Physical Science' name='course'>Physical Science</option>
+					<option value='Computer Science' name='course'>Computer Science</option>
+					<option value='Sidhdha Medicine' name='course'>sidhdha Medicine</option>
+				</select>
+			</td>
+			</tr>
+			
+			<tr>
+			<td><label>District</label></td>
+			<td>
+				<select>
+					<option>Select</option>
+					<option value='Ampara' name='District'>Ampara</option>
+					<option value='Batticalo' name='District'>Batticalo</option>
+					<option value='Trincomalee' name='District'>Trincomalee</option>
+					
+				</select>
+			</td>
+			</tr>
+			
+			<tr>
+			<td><label>State</label></td>
+			<td>
+				<select>
+					<option>State</option>
+					<option value='Eastern' name='State'>Eastern Province</option>
+					<option value='Northern' name='State'>Northern Province</option>
+					<option value='Western' name='State'>Western Province</option>
+					
+				</select>
+			</td>
+			</tr>
+			
+			<tr>
+			<td><label> PinCode</label></td>
+			<td><input type="number"></input></td>
+			</tr>
+			
+			<tr>
+			<td><label> EmailId</label></td>
+			<td><input type="e-mail"></input></td>
+			</tr>
+			
+			<tr>
+			<td><label> DOB</label></td>
+			<td><input type="Date"></input></td>
+			</tr>
+			
+			<tr>
+			<td><label> MobileNo</label></td>
+			<td><input type="number"></input></td>
+			</tr>
+			<tr>
+			<td><button type='reset' >Reset</button></td>
+			<td><button type='submit'>Submit Form</button></td>
+			
+			</tr>
+		</form>
+	</table>
+</body>
+</html>
+
+
+
+
+**********************************************************************************
 
 *****************************CA3 Addmissions Form*********************************
 
