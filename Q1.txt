@@ -1,196 +1,238 @@
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ***************************** 2017/2018 past paper ******************************************
 
 
 
-Q(1).
-
-(a) . steps to create vitual machine ..
-
-
-
-I. Prerequisite
-	1. Download virtual box using the website “virtualbox.org”.
-	2. Install virtual box on your windows host.
-	3. Download iso file of Ubuntu Server by visiting the website “ubuntu.com”
-
-II. Creating Ubuntu Virtual Machine (VM)
-	1. Start VirtualBox and click on New button to create new virtual machine.
-	2. Enter name of VM 
-	Ex. “Ubuntu_Server”
-	3. Select OS Type: “Linux”
-	4. Select Version: “Ubuntu(64bit)”
-	5. Then Click to Next button.
-	6. Set VM’s memory size to 2GB and click on Next button.
-	7. Choose VM’s hard disk option to “Create a virtual hard disk now”.
-	8. Adjust the disk size to 50GB.
-	9. Click Next button.
-	10. Click Finish button.
 	
-III. Setting up boot device
-
-
-	1. Select the VM from left panel on Virtual Box, right click and open Settings.
-	2. Click on Storage title and Select CD ROM icon under the Controller: IDE.
-	3. Click on CD ROM icon under the Attribute on the left side to select.
-	4. Choose Virtual Optical Disk File.
-	5. Locate the Ubuntu CD image file you have.
+****************************************Answers********************************************************
+Q1)
+	a. Write down the process steps to create the virtual machine using Oracle Virtual Box
 	
-IV. Setting up Network Interface.
-
-	1. Click on Network title.
-	2. While Enable Network Adapter selected, choose Attached to NAT then click Ok.
-
-
-
-V. Installing Ubuntu Server.
-	1) Initial installation settings.
-	
-	1) Start “Ubuntu_Server”.
-	2) Select “Try or Install Ubuntu server”.
-	3) Choose your preferred language as “English”.
-	4) Choose “Continue without updating”.
-	5) In keyboard configuration, select Keyboard layout and variant as “English (Us)”.
-	6) In type of install, select “Ubuntu Server” and select “Search for third-party 
-		drivers” in Additional options.
-	7) In the Network Connection, keep the setting as it is.
-	8) For Configure proxy, leave the proxy address blank.
-	9) For Ubuntu mirror address, leave the default as it is.
-	
-	2) Disk Configuration.
-		1. In guided storage configuration Select “Custom storage layout”
+		01. Prerequisites
 		
+			*Download VirtualBox from the official site and install it on machine.
+			*Download the ISO file for Ubuntu Server.
+			
+		02. Creating the Virtual Machine (VM)
+			*Open VirtualBox and click on the "New" button.
+			*Fill in the name for your VM (e.g., Ubuntu_Server), select type "Linux" and version "Ubuntu (64-bit)".
+			*Set the memory size (e.g., 2048 MB for 2GB).
+			*Choose to create a new virtual hard disk now. Set the hard disk size (e.g., 50 GB).
+			*Finalize the creation of the VM.
+			
+		03. Setting up the boot device
+			*With the VM highlighted, click on "Settings".
+			*Go to the "Storage" section, select the empty CD under Controller: IDE, and on the right panel, click on the CD icon and choose a disk file. Then select your Ubuntu ISO.
+			
+		04. Setting up the Network Interface
+			*Go to the "Network" section in the "Settings" window.
+			*Make sure the "Enable Network Adapter" checkbox is selected and choose "NAT" from the "Attached to" dropdown menu.
+			
+		5. Installing Ubuntu Server
+
+			* Start the Ubuntu_Server VM.
+
+			& Select "Try or Install Ubuntu Server".
+
+			* Choose language, keyboard layout and type of install settings.
+
+			* Leave network, proxy, and Ubuntu mirror settings at default.
+
+			* Select “Custom storage layout” for disk configuration.
+
+			* Create “Boot Partition”:
+				Select “Free Space” -> “Add GPT Partition”
+				Specify size (1024M), format (ext4), and mount point (/boot).
+				
+				
+			* Create “Swap Partition”:
+				Select “Free Space” -> “Add GPT Partition”
+				Specify size (8GB) and choose swap as the format.
+			
+			* Create “LVM partition”:
+				Select “Free Space” -> “Add GPT Partition”
+				Specify size (40G) and leave unformatted.
+				
+			* Create “LVM Volume Group (VG)”:
+				Select “Create volume group (LVM)”
+				Name your volume group, e.g., "lvmgroup".
+				
+			* Create LVM Root (/) Partition:	
+				Select the volume group (lvmgroup) -> "Create Logical Volume"
+				Name it "lv-root", specify size (15G), and choose ext4 as the format.
+				
+			* Similarly, create /usr, /home and /var LVM partition from volume group “lvmgroup”. Sizes and formats are as follows:
+					/usr: 5GB, ext4
+					/home: 5GB, ext4
+					/var: 16GB, ext4
+				Once done with partitioning, select "Done" and confirm the action.
+
+			*In profile setup, specify:
+				Your Name: Server_PC
+				Server Name: serverpc
+				Username: student
+				Password: student@1234
+				In final configuration, select the “Install OpenSSH Server” and then "Done" to start installation.
+
+				Wait for the Ubuntu Server installation to complete. You'll see logs while it's installing.	
+
+	
+	b. Consider the following situation: An Oracle Virtual Box running on the Microsoft 
+	   windows 10 and "Ubuntu Server" running on the "Virtual Machine".
+	
+		i. Which is functioning as a guest operating system?
+			 The guest operating system in this situation is the "Ubuntu Server". A guest operating system is an operating system that is installed on a virtual machine or partition, 
+			 rather than on the host hardware itself.
 		
-VI. SSH connection to the Guest OS
-	1. Check ssh is installed in your Guest OS (Linux Server)
-		• $ssh
-	✓ If ssh not installed 
-	I. Install ssh on Guest Os
-		• $sudo apt install openssh-server
-	2. Verify the ssh service is running.
-		• $sudo systemctl status ssh.
-	3. If the status is not active (running) enable the ssh server and start it.
-		• $sudo systemctl enable ssh
-		• $sudo systemctl start ssh
+		ii. Which is functioning as a host operating system?
+			The host operating system in this situation is "Microsoft Windows 10". The host operating system is the operating system of the physical computer, 
+			in this case, the system that is running the Oracle Virtual Box software.
+			
+	c. Write down the commands for the following:
+	
+		i. Restart the "Ubuntu" Server
 		
+			sudo reboot
+
+		ii. List the installed packages in "Ubuntu" Server
 		
-VII. Install Putty
-	
-	1. Download putty using the website “https://www.putty.org/”.
-	2. Install putty on your windows host.
-
-VIII. Virtual Box Settings
-
-	1. Go to 
-		Oracle Virtual Box Manager → Machine → Settings → Network → Adapter 1 →
-		Advanced → Port Forwarding → Add
-	
-		• Name : ssh
-		• Protocol : TCP
-		• Host IP : 127.0.0.1
-		• Host Port : 2222 (or any unused port)
-		• Guest IP : 10.0.2.15 (Depends on your guest IP address)
-		• Guest Port : 22
-	
-	2. Then click OK.
-	
-	3. Go to the putty on windows machine.
-		• In hostname or ip address : 127.0.0.1
-		• Port : 2222
-		• Connection type : ssh
-	
-	4. Then click open.
-(c)
-
-	(i) Restart Ubuntu Server:
-		 sudo reboot
-
-	
-	(ii) List the installed packages in Ubuntu Server:
-			dpkg --list | grep '^ii'
-	
-	(iii)
-	
-	(iv)
-	
-	
-	
-(Q2).
-
-
-	(a). identify network interfaces  
-	
-		$ip link show
-	
-	
-	(b). add the ip address 10.0.2.20/24 to network interface enp03
-	
-		$sudo ip addr add 10.0.2.20/24 dev enp0s3
+			apt list --installed 
+			
 		
-	(c).
-	
-	
-		$sudo ip link set dev enp0s3 down
-	
-	(d).
-	
-		$sudo ip link set dev enp0s3 up
+		iii. Install the packages "wget" in ubuntu server.
+		
+			sudo apt-get update
+			sudo apt-get install wget	
 
-	(e).
-	
-		$ip address show dev enp0s3
-	
-	(f). Add temporary DNS
-	
-		$sudo vi /etc/resolv.conf
+		
+		iv. Identify the installed Ubuntu Server.
+		
+			lsb_release -a
+				or
+			cat /etc/os-release
 
-(Q4).
-
-
-(a).add group
-
-	sudo groupadd guestgroup
+		
+Q2. Create a sub folder "Q2" in your index number folder. Use the "Ubuntu Server" to answer 
+	the following quesions and save it as "q2answers.txt".
 	
-(b).add user to group
-
-	sudo usermod -aG guestgroup guesttc
+	Assigning an IP address is much important to get the connectivity to the desired network.
 	
-(c).
+		a. Write the command to identify the network interfaces.
+			ip addr show
+				or 
+			ifconfig -a
 
-	sudo etc/groups
-	
-	
-(d). delete user from group
+		b. Write the command to add the IP address 10.0.2.20/24 to the network interface enp0s3
+			temporally.
+			
+			sudo ip addr add 10.0.2.20/24 dev enp0s3
+			ip addr show enp0s3
 
-	sudo gpasswd -d guest guestgroup
+
+		c. Write the command to down the network interface enp0s2.
+		
+			ifconfig -a
+			sudo ip link set enp0s2 down
+			
+
+		d. Write the command to up the network interface enp0s3.
+			
+			sudo ip link set enp0s3 up
+
+		e. Write the command to show the IP address of the network interface enp0s3.
+		
+			ip addr show enp0s3
+
+		f. Write the file location to temporally assign the DNS.	
+		
+			/etc/resolv.conf
+
+			sudo nano /etc/resolv.conf
+			nameserver 8.8.8.8
+			nameserver 8.8.4.4
+
+
+Q3. Create a sub folder Q3 in your index folder. Write down the anser for the installaion and configure of
+	DHCP server in Ubuntu and save it as "q3ansers.txt"
+	A disk quota sets the maximum storage space for each user in Linux System.
+	
+	a. Write the command to install "Disk Quota Tool" in "Ubuntu" server.
+	
+		sudo apt-get update
+		sudo apt-get install quota
+
+	b. Write the command to check the version of the "Disk Quota Tool".
+	
+		quota -V
+
+		
+	c. Update the file system mount point of root to enable the users and group.Which file you want change 
+	   from "/etc" location?
+	   
+	   To enable quotas, need to edit the /etc/fstab file.
+	   sudo nano /etc/fstab
+
+	   UUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx /               ext4    errors=remount-ro 0       1
+	   UUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx /               ext4    errors=remount-ro,usrquota,grpquota 0       1
+
+	   
+	d. After editing, the file system is located in the "/etc" directory. Which command is used to remoutn the 
+	   file system?
+	   sudo mount -o remount /
+
+`	 
+	e. How do you verify the changes, which was done by the previous(d) command?
+	   mount | grep '^/dev'
+
+	f. Before enabling the quota, there should be two files for user and group. Which command is used to 
+	   create those files?
+		sudo quotacheck -ucm /
+		sudo quotacheck -gcm /
+
+	   
+	g. Write down the command to turn on the quota system.
+		sudo quotaon /
+
+		
+	h. Write the command to edit the quota for "guestuser"
+		sudo edquota guestuser
+
+	i. Write down the command to set the grace period of block and indoe for 10days(864000 in sec)
+		sudo edquota -t
+
+
+	j. Write down the command to generate the report. 
+
+		repquota /
+
+
+
+Q4. Create a sub folder "Q4" in the created folder. Anser the following quesions and save it as "q4answers.txt"
+	User and Group management are much essential in a security aspect of a Linux System.
+	
+	a. Write the command to add a group with the name of "guestgroup"
+		sudo groupadd guestgroup
+
+
+	b. Write the command to add the user "guesttc" to the groups "guestgroup"
+		sudo useradd guesttc
+		sudo passwd guesttc
+		sudo usermod -aG guestgroup guesttc
+
+
+	c. Write the command to view all the groups which are created in the system.
+		cat /etc/group
+
+		group_name:x:group_id:user_list
+
+		
+	d. Write the command to delete the user "guesttc" from the group "guestgroup"
+		sudo gpasswd -d guesttc guestgroup
+
+	e. Write the command to delete the group "guestgroup"
+		sudo groupdel guestgroup
+
 	
 
 
@@ -225,8 +267,10 @@ VIII. Virtual Box Settings
 
 	FONTFACE="TER"
 	FONTSIZE="16x32"
-	Save the file. Then issue the following command
+	Save the file. Then issue the following command Ctrl+X, then Y, then Enter.
 	sudo update-initramfs -u
+	sudo reboot
+
 
 
 
@@ -830,5 +874,226 @@ chmod 751 filename
     Run Level 3: Multi-User Mode with Networking - The standard multi-user mode with networking enabled.
     Run Level 4: Not used/user-defined.
     Run Level 5: Multi-User Mode with Graphical Interface - The standard multi-user mode with a graphical desktop.
+	
+	
+	
+	
     Run Level 6: Reboot - System restart.
 
+************************************** Install Apache, MySQL & PHP on Ubuntu Server **************************************
+
+1. Install Apache webserver.
+
+	1.1. Update Ubuntu Server
+		
+		sudo apt update
+
+	1.2. Upgrade Ubuntu Server
+	
+		sudo apt upgrade -y
+
+	1.3. Install Apache web server
+		
+		sudo apt install apache2 -y
+
+
+	1.4. Check Apache webserver running or not.
+	
+		sudo systemctl status apache2
+
+
+*****************************port forwarding->  php			TCP				127.0.0.1					80					10.0.2.15			80***********
+*****************************port forwarding->  ssh			TCP				127.0.0.1					2222				10.0.2.15			22***********
+
+	1.5. To test apache web server, open your web browser and access the apache test page by
+	navigating to http://localhost/ If you can see Apache2 Ubuntu Default Page, Apache server is working
+	
+		sudo apt install curl -y
+		curl http://localhost
+		
+		
+2. Install MySQL
+	2.1. To install MySQL on Ubuntu run
+	
+		sudo apt install mysql-server -y
+
+	2.2. Verify if MySQL service is running or not by
+		
+		sudo systemctl status mysql
+
+
+	2.3. To view passwords of MySQL
+		sudo mysql_secure_installation
+
+	2.4. To add the password to mysql root.
+		sudo mysql -u root -p
+		ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password';
+		
+
+
+	2.5. Check the password is set properly to the MySQL First leave from logged in MySQL Again log-in to the MySQL
+		exit
+		sudo mysql -u root -p
+
+
+3. Install PHP
+	3.1. Install PHP
+	
+		sudo apt install php libapache2-mod-php -y
+
+	
+	
+	3.2. After installing PHP, create info.php in the apache root document folder
+	In the created file add the following line
+	
+		sudo nano /var/www/html/info.php
+
+	
+	
+	
+	3.3. In the created file add the following line
+		
+		
+			<?php
+			phpinfo();
+			?>
+
+		
+	3.4. And save and quite the file.
+	
+		To save the file in nano, press Ctrl + O, then Enter to confirm. To exit nano, press Ctrl + X.
+	
+	3.5. Restart the apache service to take effect the changes
+	
+		sudo systemctl restart apache2
+
+	
+	3.6. Test PHP
+	Open up your web browser and navigate to localhost:8080 /info.php in address bar ✓ Check the version of PHP $ php -version
+	
+		php -v
+
+	
+	
+	
+	
+	
+<?php
+phpinfo();
+?>
+
+3.4. And save and quite the file.
+
+3.5. Restart the apache service to take effect the changes
+
+3.6. Test PHP
+
+php-TCP-127.0.0.1-80.10.0.2.15-80
+http://127.0.0.1/info.php
+
+Open up your web browser and navigate to localhost:8080 /info.php in address bar
+✓ Check the version of PHP
+$ php -version
+
+
+Now we are going to create an HTML form to take your username and 
+password to store in a mysql database using PHP
+
+1. Create an html form in the location of /var/www/html
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Form site</title>
+</head>
+<body>
+<form method="post" action="myform.php">
+Username: <input type="text" name="uname"><br><br>
+Password: <input type="password" name="upassword"><br><br>
+<input type="submit" value="Submit">
+</form>
+</body>
+</html>
+
+
+2. Save and exit the file
+
+3. Next create a database and table in mysql
+
+3.1. Login to mysql
+
+
+3.2. Enter the password for user root (This will be your class password: 'Testwebpw1$')
+
+3.3. Create a database with the name myDB.
+
+3.4. View the list of databases
+
+3.5. Create a table ‘user in database ‘myDB’
+
+3.6. Check the structure of the above created table
+
+
+
+# Login to MySQL
+mysql -u root -p
+
+# Enter the password for user root ('Testwebpw1$')
+
+# Create a database with the name myDB
+CREATE DATABASE myDB;
+
+# View the list of databases
+SHOW DATABASES;
+
+# Use the myDB database
+USE myDB;
+
+# Create a table 'user' in the database 'myDB'
+CREATE TABLE user (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+# Check the structure of the above-created table
+DESCRIBE user;
+
+# Exit MySQL
+exit;
+
+
+
+3.7. Finally create the php file which connect both html and mysql database.
+
+<?php
+$host = "localhost";
+$dbusername = "root";
+$dbpassword = "Testwebpw1$";
+$dbname = "myDB";
+//Create Connection
+$conn = new mysqli ($host, $dbusername, $dbpassword, 
+$dbname);
+$username = $_POST['uname'];
+$password = $_POST['upassword'];
+//Insert value in database table
+$sql = "INSERT INTO user (name, password) values 
+('$username', '$password')";
+if($conn->query($sql)){
+echo "New record is inserted successfully";
+}
+else {
+echo "Error: ". $sql . "<br>". $conn->error;
+}
+$conn->close();
+?>
+
+4. Save the file and exit
+
+5. Now open the HTML form and test it using your browser.
+
+http://127.0.0.1/form.html
+
+
+
+		
