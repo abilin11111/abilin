@@ -1,47 +1,5 @@
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ***************************** 2017/2018 past paper ******************************************
 
 
@@ -1135,6 +1093,10 @@ $conn->close();
 5. Now open the HTML form and test it using your browser.
 
 http://127.0.0.1/form.html
+
+
+
+*******http://localhost:8080/info.php*******
 
 
 
