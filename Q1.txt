@@ -29,1104 +29,896 @@
 
 
 
-***************************** 2017/2018 past paper ******************************************
 
 
 
-	
-****************************************Answers********************************************************
-Q1)
-	a. Write down the process steps to create the virtual machine using Oracle Virtual Box
-	
-		01. Prerequisites
+
+
+
+
+
+
+
+
+--------------------playfair-------------------------------------
+
+import java.util.*;
+
+public class PlayFairCryptography {
+
+	static String removeDuplicateElemetsFromKey(String key) {
+		if ("" != key && null != key) {
+			char array[] = new char[key.length()];
+			for (int i = 0; i < array.length; i++) {
+				if (isNotContains(array, key.charAt(i))) {
+					array[i] = key.charAt(i);
+				}
+			}
+			return removeEmptyElements(array);
+		}
+		return "";
+	}
+
+	static boolean isNotContains(char[] array, char c) {
+		for (int i = 0; i < array.length; i++) {
+			if (array[i] == c) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	static String removeEmptyElements(char[] array) {
+		String arrayString = "";
+		for (int i = 0; i < array.length; i++) {
+			if (array[i] != '\u0000') {
+				arrayString += array[i];
+			}
+		}
+		return arrayString;
+	}
+
+	static String createKeyAndAlpabetArray(char[] alpabet, String key) {
+		char array[] = new char[25];
+		for (int i = 0; i < key.length(); i++) {
+			array[i] = key.charAt(i);
+		}
+		int count = key.length();
+		for (int i = 0; i < array.length; i++) {
+
+			if (isNotContains(array, alpabet[i])) {
+				array[count] = alpabet[i];
+
+				count++;
+			}
+		}
+		return removeEmptyElements(array);
+	}
+
+	static char[][] createKeyMatrix(String keyString) {
+		char matrix[][] = new char[5][5];
+		int k = 0;
+		for (int i = 0; i < 5; i++) {
+			for (int j = 0; j < 5; j++) {
+				matrix[i][j] = keyString.charAt(k);
+				k++;
+			}
+		}
+		return matrix;
+	}
+
+	static void printKeyMatixform(char[][] matrix) {
+		for (int i = 0; i < 5; i++) {
+			for (int j = 0; j < 5; j++) {
+				System.out.print(matrix[i][j] + "   ");
+			}
+			System.out.println();
+		}
+	}
+
+	static String toString(char[] ch) {
+		String result = "";
+		for (int i = 0; i < ch.length; i++) {
+			result += ch[i];
+		}
+		return result;
+	}
+
+	static int arrayLength(String str) {
 		
-			*Download VirtualBox from the official site and install it on machine.
-			*Download the ISO file for Ubuntu Server.
-			
-		02. Creating the Virtual Machine (VM)
-			*Open VirtualBox and click on the "New" button.
-			*Fill in the name for your VM (e.g., Ubuntu_Server), select type "Linux" and version "Ubuntu (64-bit)".
-			*Set the memory size (e.g., 2048 MB for 2GB).
-			*Choose to create a new virtual hard disk now. Set the hard disk size (e.g., 50 GB).
-			*Finalize the creation of the VM.
-			
-		03. Setting up the boot device
-			*With the VM highlighted, click on "Settings".
-			*Go to the "Storage" section, select the empty CD under Controller: IDE, and on the right panel, click on the CD icon and choose a disk file. Then select your Ubuntu ISO.
-			
-		04. Setting up the Network Interface
-			*Go to the "Network" section in the "Settings" window.
-			*Make sure the "Enable Network Adapter" checkbox is selected and choose "NAT" from the "Attached to" dropdown menu.
-			
-		5. Installing Ubuntu Server
+		int q = 0;
+		int y = 0;
+		while (str.charAt(q) != ' ') {
+			if (str.charAt(q) == str.charAt(q + 1)) {
+				q++;
+				y = y + 2;
+			} else {
+				if (str.charAt(q + 1) == ' ') {
+					y = y + 2;
+					q++;
+				} else {
+					y = y + 2;
+					q = q + 2;
+				}
+			}
+		}
+		return y;
+	}
 
-			* Start the Ubuntu_Server VM.
-
-			& Select "Try or Install Ubuntu Server".
-
-			* Choose language, keyboard layout and type of install settings.
-
-			* Leave network, proxy, and Ubuntu mirror settings at default.
-
-			* Select “Custom storage layout” for disk configuration.
-
-			* Create “Boot Partition”:
-				Select “Free Space” -> “Add GPT Partition”
-				Specify size (1024M), format (ext4), and mount point (/boot).
-				
-				
-			* Create “Swap Partition”:
-				Select “Free Space” -> “Add GPT Partition”
-				Specify size (8GB) and choose swap as the format.
-			
-			* Create “LVM partition”:
-				Select “Free Space” -> “Add GPT Partition”
-				Specify size (40G) and leave unformatted.
-				
-			* Create “LVM Volume Group (VG)”:
-				Select “Create volume group (LVM)”
-				Name your volume group, e.g., "lvmgroup".
-				
-			* Create LVM Root (/) Partition:	
-				Select the volume group (lvmgroup) -> "Create Logical Volume"
-				Name it "lv-root", specify size (15G), and choose ext4 as the format.
-				
-			* Similarly, create /usr, /home and /var LVM partition from volume group “lvmgroup”. Sizes and formats are as follows:
-					/usr: 5GB, ext4
-					/home: 5GB, ext4
-					/var: 16GB, ext4
-				Once done with partitioning, select "Done" and confirm the action.
-
-			*In profile setup, specify:
-				Your Name: Server_PC
-				Server Name: serverpc
-				Username: student
-				Password: student@1234
-				In final configuration, select the “Install OpenSSH Server” and then "Done" to start installation.
-
-				Wait for the Ubuntu Server installation to complete. You'll see logs while it's installing.	
-
-	
-	b. Consider the following situation: An Oracle Virtual Box running on the Microsoft 
-	   windows 10 and "Ubuntu Server" running on the "Virtual Machine".
-	
-		i. Which is functioning as a guest operating system?
-			 The guest operating system in this situation is the "Ubuntu Server". A guest operating system is an operating system that is installed on a virtual machine or partition, 
-			 rather than on the host hardware itself.
+	static char[] breakingTheStringAsPairs(String str) {
 		
-		ii. Which is functioning as a host operating system?
-			The host operating system in this situation is "Microsoft Windows 10". The host operating system is the operating system of the physical computer, 
-			in this case, the system that is running the Oracle Virtual Box software.
-			
-	c. Write down the commands for the following:
-	
-		i. Restart the "Ubuntu" Server
+		char textArr[] = new char[arrayLength(str)];
+		int q = 0;
+		int y = 0;
+		while (y != textArr.length) {
+			if (str.charAt(q) == str.charAt(q + 1)) {
+				textArr[y] = str.charAt(q);
+				textArr[y + 1] = 'X';
+				q++;
+				y = y + 2;
+			} else {
+				if (str.charAt(q + 1) == ' ') {
+					textArr[y] = str.charAt(q);
+					textArr[y + 1] = 'X';
+					y = y + 2;
+					q++;
+				} else {
+					textArr[y] = str.charAt(q);
+					textArr[y + 1] = str.charAt(q + 1);
+					y = y + 2;
+					q = q + 2;
+				}
+			}
+		}
+		return textArr;
+	}
+
+	static int rowIndex(char matrix[][], char letter) {
+		int row = 0;
+
+		for (int r = 0; r < 5; r++) {
+			for (int c = 0; c < 5; c++) {
+				if (matrix[r][c] == letter) {
+					row = r;
+				}
+			}
+		}
+		return row;
+	}
+
+	static int columnIndex(char matrix[][], char letter) {
+		int column = 0;
+
+		for (int r = 0; r < 5; r++) {
+			for (int c = 0; c < 5; c++) {
+				if (matrix[r][c] == letter) {
+					column = c;
+				}
+			}
+		}
+		return column;
+	}
+
+	static String encryption(String str, String key, char[][] matrix) {
+
+		char[] textArr = breakingTheStringAsPairs(str);
+		char[] cipher = new char[arrayLength(str)];
+
+		char letter1, letter2;
+		int p = 0;
+
+		int r1 = 0;
+		int r2 = 0;
+
+		int c1 = 0;
+		int c2 = 0;
+
+		int index = 0;
+
+		for (int i = 0; i < cipher.length / 2; i++) {
+			letter1 = textArr[p];
+			p++;
+
+			r1 = rowIndex(matrix, letter1);
+			c1 = columnIndex(matrix, letter1);
+
+			letter2 = textArr[p];
+			p++;
+
+			r2 = rowIndex(matrix, letter2);
+			c2 = columnIndex(matrix, letter2);
+
+			if (r1 == r2) {
+				if (c1 == 4) {
+					cipher[index] = matrix[r1][(c1 + 1) % 5];
+					index++;
+				} else {
+					cipher[index] = matrix[r1][c1 + 1];
+					index++;
+				}
+
+				if (c2 == 4) {
+					cipher[index] = matrix[r2][(c2 + 1) % 5];
+					index++;
+				} else {
+					cipher[index] = matrix[r2][c2 + 1];
+					index++;
+				}
+			}
+
+			else if (c1 == c2) {
+				if (r1 == 4) {
+					cipher[index] = matrix[(r1 + 1) % 5][c1];
+					index++;
+				} else {
+					cipher[index] = matrix[r1 + 1][c1];
+					index++;
+				}
+
+				if (r2 == 4) {
+					cipher[index] = matrix[(r2 + 1) % 5][c2];
+					index++;
+				} else {
+					cipher[index] = matrix[r2 + 1][c2];
+					index++;
+				}
+			}
+
+			else {
+				cipher[index] = matrix[r1][c2];
+				index++;
+
+				cipher[index] = matrix[r2][c1];
+				index++;
+			}
+		}
+
+		return toString(cipher);
+	}
+
+	static char[] toArray(String str){
+		char arr[] = new char[str.length()-2];
+		for (int i = 0; i < str.length()-2; i++) {
+			arr[i] = str.charAt(i);
+		}
+		return arr;
+	}
+
+	static String removeFillerCharacter(char[] arr){
+		String plainText="";
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] != 'X') {
+				plainText += arr[i];
+			}
+		}
+		return plainText;
+	}
+
+	static String decryption(String str, String key, char[][] matrix){
 		
-			sudo reboot
-
-		ii. List the installed packages in "Ubuntu" Server
-		
-			apt list --installed 
-			
-		
-		iii. Install the packages "wget" in ubuntu server.
-		
-			sudo apt-get update
-			sudo apt-get install wget	
-
-		
-		iv. Identify the installed Ubuntu Server.
-		
-			lsb_release -a
-				or
-			cat /etc/os-release
-
-		
-Q2. Create a sub folder "Q2" in your index number folder. Use the "Ubuntu Server" to answer 
-	the following quesions and save it as "q2answers.txt".
-	
-	Assigning an IP address is much important to get the connectivity to the desired network.
-	
-		a. Write the command to identify the network interfaces.
-			ip addr show
-				or 
-			ifconfig -a
-
-		b. Write the command to add the IP address 10.0.2.20/24 to the network interface enp0s3
-			temporally.
-			
-			sudo ip addr add 10.0.2.20/24 dev enp0s3
-			ip addr show enp0s3
-
-
-		c. Write the command to down the network interface enp0s2.
-		
-			ifconfig -a
-			sudo ip link set enp0s2 down
-			
+		char letter1, letter2;
+		int p = 0;
+
+		int r1 = 0;
+		int r2 = 0;
+
+		int c1 = 0;
+		int c2 = 0;
 
-		d. Write the command to up the network interface enp0s3.
-			
-			sudo ip link set enp0s3 up
+		int index = 0;
+
+		int n = str.length() - 2;
 
-		e. Write the command to show the IP address of the network interface enp0s3.
-		
-			ip addr show enp0s3
+		char plain[] = new char[n];
+		char[] cipher = toArray(str);
 
-		f. Write the file location to temporally assign the DNS.	
-		
-			/etc/resolv.conf
-
-			sudo nano /etc/resolv.conf
-			nameserver 8.8.8.8
-			nameserver 8.8.4.4
-
-
-Q3. Create a sub folder Q3 in your index folder. Write down the anser for the installaion and configure of
-	DHCP server in Ubuntu and save it as "q3ansers.txt"
-	A disk quota sets the maximum storage space for each user in Linux System.
-	
-	a. Write the command to install "Disk Quota Tool" in "Ubuntu" server.
-	
-		sudo apt-get update
-		sudo apt-get install quota
-
-	b. Write the command to check the version of the "Disk Quota Tool".
-	
-		quota -V
-
-		
-	c. Update the file system mount point of root to enable the users and group.Which file you want change 
-	   from "/etc" location?
-	   
-	   To enable quotas, need to edit the /etc/fstab file.
-	   sudo nano /etc/fstab
-
-	   UUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx /               ext4    errors=remount-ro 0       1
-	   UUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx /               ext4    errors=remount-ro,usrquota,grpquota 0       1
-
-	   
-	d. After editing, the file system is located in the "/etc" directory. Which command is used to remoutn the 
-	   file system?
-	   sudo mount -o remount /
-
-`	 
-	e. How do you verify the changes, which was done by the previous(d) command?
-	   mount | grep '^/dev'
-
-	f. Before enabling the quota, there should be two files for user and group. Which command is used to 
-	   create those files?
-		sudo quotacheck -ucm /
-		sudo quotacheck -gcm /
-
-	   
-	g. Write down the command to turn on the quota system.
-		sudo quotaon /
-
-		
-	h. Write the command to edit the quota for "guestuser"
-		sudo edquota guestuser
-
-	i. Write down the command to set the grace period of block and indoe for 10days(864000 in sec)
-		sudo edquota -t
-
-
-	j. Write down the command to generate the report. 
-
-		repquota /
-
-
-
-Q4. Create a sub folder "Q4" in the created folder. Anser the following quesions and save it as "q4answers.txt"
-	User and Group management are much essential in a security aspect of a Linux System.
-	
-	a. Write the command to add a group with the name of "guestgroup"
-		sudo groupadd guestgroup
-
-
-	b. Write the command to add the user "guesttc" to the groups "guestgroup"
-		sudo useradd guesttc
-		sudo passwd guesttc
-		sudo usermod -aG guestgroup guesttc
-
-
-	c. Write the command to view all the groups which are created in the system.
-		cat /etc/group
-
-		group_name:x:group_id:user_list
-
-		
-	d. Write the command to delete the user "guesttc" from the group "guestgroup"
-		sudo gpasswd -d guesttc guestgroup
-
-	e. Write the command to delete the group "guestgroup"
-		sudo groupdel guestgroup
-
-	
-
-
-
-
-
-		
-************************************* Changing the Screen Size *********************************************
-
-
-
-
-
-1. Changing the Screen Size
-
-	Open /etc/default/grub file.
-	Type the below commands
-
-	GRUB_GFXMODE=1280x1024 #width x height required
-	GRUB_CMDLINE_LINUX_DEFAULT="nomodeset"
-	GRUB_GFXPAYLOAD_LINUX=keep
-	
-	Save the file. Then issue the following commands
-
-	sudo update-grub
-	sudo reboot
-
-2. Changing the Terminal Fontsize
-	
-	Open /etc/default/console-setup file.
-	Change the values for font type and font size to
-
-	FONTFACE="TER"
-	FONTSIZE="16x32"
-	Save the file. Then issue the following command Ctrl+X, then Y, then Enter.
-	sudo update-initramfs -u
-	sudo reboot
-
-
-
-
-************************************** USER, GROUP MANAGEMENT **************************************
-
-
-• In Linux there are three types of users
-1. Super / Root user - Powerful user, Administrator User
-2. System user - users created by the Software /Applications
-3. Normal user – the users created by root user (normal users)
-
-
-• /etc/passwd – Keeps the user account name, acc group, acc description and 
-password information. 
-• /etc/shadow – Holds the encrypted password of the corresponding account.
-• /etc/group –This files contains the group information for each account.
-• /etc/gshadow – Holds the encrypted password of the corresponding group
-
-
-$cat /etc/passwd
-
-$cat /etc/shadow
-
-$cat /etc/group
-
-$cat /etc/gshadow
-
-useradd command:
-useradd -d /home/gem -g developers -c “GemThe Coder” -s /bin/ksh gem-dev
-
-
-usermod command:
-usermod –d /home/gem-new-m-l gem-dev gem-developer
-▪ -d - Changing home directory to/home/gem-new
-▪ -m - Create /home/gem-new directory is not available 
-▪ -l - Change Login name to gem-developer
-
-
-userdel command:
-userdel Command:
-userdel -r gem-developer
-
-
-groupmod command:
-groupmod -n <new_group_name> <old_group_name>
-groupmod –n developers-new developers
-
-groupdel command:
-groupdel groupname
-
-
-1. List users
-
-cat /etc/passwd
-# or
-less /etc/passwd
-
-
-2. List groups
-
-cat /etc/group
-# or
-less /etc/group
-
-
-3. Create a new user
-
-sudo adduser new_username
-# or
-sudo useradd new_username
-
-
-
-4. Change user password of set password for the new user
-
-sudo passwd username
-
-
-5. Add new group
-
-sudo groupadd new_groupname
-
-
-6. Add existing user to group
-
-sudo usermod -aG groupname username
-
-
-
-7. Removing user from group
-
-sudo gpasswd -d username groupname
-
-
-8. Change user primary group
-
-sudo usermod -g new_primary_groupname username
-
-
-9. Delete groups
-
-sudo groupdel groupname
-
-
-
-10. Delete users
-
-
-sudo userdel username
-
-
-
-
-************************************** Processes Handling in Ubuntu Server **************************************
-
-
-
-1. List all process in current shell.
-
-	$ ps
- 
-2. Display every active processes
- 
-	$ ps -A
-	$ ps -e
-
-3. Display all process and process not associated with terminal
-	
-	$ ps -au or
-	$ ps -aux
-
-
-4. To perform full-format listing.
-	$ ps -ef OR $ ps -eF
-
-
-5. To select all the process owned by the user.
-
-	$ ps -x
-
-
-6. To display users, process by real user id or name.
-
-
-	$ ps -fu guesttc (your username)
-	OR
-	$ ps -fu 1002 (to see the user id: id -u username)
-
-
-7. To Display root process
-
-
-	$ ps -fu root
-	OR
-	$ ps -fu 0
-
-
-7. To Display root process
-
-
-	$ ps -fu root
-	OR
-	$ ps -fu 0
-
-
-8. Display Group process
-
-	$ ps -fg guesttc
-	OR
-	$ ps -fg 1008
-	to find the group id getent group | grep mygroup) or (cat /etc/group | grep mygroup)
-
-
-9. Display process by PID and PPID
-
-	$ ps -fp 1588 - Select process by ppid
-	$ ps -f --ppid 1587 - Make Selection Using PID List
-	$ ps -fp 1394,1587
-
-
-10. Print process tree
-
-	$ ps -e --forest
-	From this tree we can identify which is the parent process and the child process it forked 
-	in a recursive manner.
-	To print the process tree for a given process.
-	
-	$ ps -f --forest -C sshd ( -C for command )
-	OR
-	$ ps -ef --forest | grep sshd
-
-
-11. Print Process Threads
-
-	$ ps -fL -C sshd
-	Output:
-	LWP: Light Weight Process
-	NLWP: Number of Light Weight Process
-
-
-12. Troubleshoot Linux System Performance.
-
-
-	To find top running process
-	$ ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head
-
-	The head piping will display for first 10 line of the record, if you want to view more or less 
-	pass the line number as -n parameter.
-
-	$ ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -n 15
-	If you want to sort by cpu value
-	$ ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head
-	If you want to stop any process that is consuming high cpu time
-	$ kill -o pid
-
-13. To see Real-time Process Monitoring.
-
-	watch -n 1 'ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head'
-	-n : interval in seconds.
-	To exit: Ctl + z
-	
-
-
-
-
-************************************** Configuring Static, Dynamic IP Address on Ubuntu Server **************************************
-
-
-
-
-
-1. Check/Display all available network interface
-	$ip link show
-
-2. Identifying Ethernet Interfaces
-	$sudo ip a OR $ip a
-	[Loopback address is a software address (127.0.0.1)]
-	$sudo ip addr OR $ip addr
-	$sudo lshw –class network
-	[Detailed hardware information about network cards on Linux]
-
-
-3. Check the current IP of the server
-	$ifconfig 
-	
-	
-4. Temporary IP address assignment
-	
-	1). Temporary IP address assigning (This will work on real environment & it is not 
-	physically connected to the network)
-	
-	$sudo ip addr add 10.0.2.20/24 dev enp0s3
-	$sudo ip link set dev enp0s3 down
-	$sudo ip link set dev enp0s3 up
-	$ip address show dev enp0s3
-	
-	
-	
-2). Configure Default gateway
-		$sudo ip route add default via 10.0.2.1
-		$sudo ip route show (to see the default gateway)
-
-3). Add temporary DNS Client address
-	
-	✓ Edit /etc/resolv.conf
-	$sudo vi /etc/resolv.conf
-	Add nameserver 8.8.8.8
-	
-4). To delete all IP configuration
-		
-		$sudo ip addr flush enp0s3
-	
-5). Static IP Address assignment.
-	
-	• Go to netplan directory
-		$cd /etc/netplan
-	• List out the contents in the netplan
-		$ll
-		
-	 Open the .yaml file 
-		$sudo vi 00-installer-config.yaml
-
-	• Then apply the changers 
-		$sudo netplan apply
-	
-	• See the IP address by giving the command “ifconfig”
-		$ifconfig
-
-6). Dynamic IP Address Assignment (DHCP) To configure your server to use DHCP dynamic address assignment 
-	
-	• open the file “/etc/netplan/50-cloud-init.yaml”
-		$sudo vi /etc/netplan/00-installer-config.yaml
-		Keep the dhcp4 = true
-		Save the file and exit
-		
-	• Apply the changes on configuration by giving the command “netplan apply”
-		$sudo netplan apply
-		
-		
-		
-		
-************************************** Install and Configuring DHCP Server in Ubuntu Server **************************************
-
-
-
-
-1. Update and upgrade the server.
- 
-2. Now install the DHCP server.
-
-3. Change the network configuration file (00-installer-config.yaml file) with the 
-below values.
-
-	addresses: [10.10.10.50/24]
-	routes: 
-	- to: default
-	via: 10.10.10.1
-	nameservers:
-	address: [8.8.8.8, 8.8.4.4]
-
-4. Apply the changes.
-
-5. Configure the dhcpd.conf file.
-	i. Before configure the file take a backup of the file.
-	ii. After taking the backup open the dhcpd.conf file with any text editor
-6. Do the changes in the configuration file with the below values.
-subnet 10.10.10.0 netmask 255.255.255.0 {
-range 10.10.10.100 10.10.10.200;
-option subnet-mask 255.255.255.0;
-option domain-name-servers 8.8.8.8, 8.8.4.4;
+		for (int i = 0; i < n / 2; i++) {
+			letter1 = cipher[p];
+			p++;
+
+			r1 = rowIndex(matrix, letter1);
+			c1 = columnIndex(matrix, letter1);
+
+			letter2 = cipher[p];
+			p++;
+
+			r2 = rowIndex(matrix, letter2);
+			c2 = columnIndex(matrix, letter2);
+
+			if (r1 == r2) {
+				if (c1 == 0) {
+					plain[index] = matrix[r1][(c1) + 4];
+					index++;
+				} else {
+					plain[index] = matrix[r1][c1 - 1];
+					index++;
+				}
+
+				if (c2 == 0) {
+					plain[index] = matrix[r2][(c2) + 4];
+					index++;
+				} else {
+					plain[index] = matrix[r2][c2 - 1];
+					index++;
+				}
+
+			}
+
+			else if (c1 == c2) {
+				if (r1 == 0) {
+					plain[index] = matrix[(r1) + 4][c1];
+					index++;
+				} else {
+					plain[index] = matrix[r1 - 1][c1];
+					index++;
+				}
+
+				if (r2 == 0) {
+					plain[index] = matrix[(r2) + 4][c2];
+					index++;
+				} else {
+					plain[index] = matrix[r2 - 1][c2];
+					index++;
+				}
+			}
+
+			else {
+				plain[index] = matrix[r1][c2];
+				index++;
+
+				plain[index] = matrix[r2][c1];
+				index++;
+			}
+		}
+		String plainText = removeFillerCharacter(plain);
+		return plainText;
+	}
+
+	public static void main(String[] args) {
+
+		char alphabet[] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S',
+				'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+
+		Scanner sc = new Scanner(System.in);
+
+		System.out.print("Enter the message : ");
+		String str1 = sc.nextLine();
+		String message = (str1.toUpperCase() + " " + " ");
+
+		System.out.println();
+
+		System.out.print("Enter the key : ");
+		String key1 = sc.nextLine();
+		String key = key1.toUpperCase();
+
+		String uniqueKeyString = removeDuplicateElemetsFromKey(key);
+		System.out.println(uniqueKeyString);
+
+		String uniqueArrayString = createKeyAndAlpabetArray(alphabet, uniqueKeyString);
+		System.out.println(uniqueArrayString);
+
+		char[][] keyMatrix = createKeyMatrix(uniqueArrayString);
+		printKeyMatixform(keyMatrix);
+
+		System.out.println("Select the option : ");
+		System.out.println("	1.Encryption");
+		System.out.println("	2.Decryption");
+
+		System.out.print("Option(1/2) : ");
+		int option = sc.nextInt();
+
+		String cipherText = "";
+
+		if (option == 1) {
+			cipherText = encryption(message, key, keyMatrix);
+			System.out.println("cipherText : " + cipherText);
+		}
+		else if (option == 2) {
+			String OriginalText = decryption(message, key, keyMatrix);
+			System.out.println("Original Text : " + OriginalText);
+		}
+		else {
+			System.out.println("Invalid option");
+		}
+	}
 }
 
-7. Save the file and exit.
-
-8. Restart the DHCP server.
-
-9. Check the status of the DHCP server. (Check the status is in active or not, if not troubleshoot 
-the problem)
-
-10. In client side,
-i. Open the Ubuntu Desktop as a client in your virtual environment. (If Ubuntu 
-desktop not available then install)
-
-11. Now check your IP address of your client OS. (Ubuntu desktop)
-
-12. In your DHCP server side, check the leased addresses.
-
-To assign fixed IP address with a mac address
-
-
-1. Configure the dhcpd.conf file with the below values,
-a. Client host name
-b. Client host mac address
-2. Restart the DHCP service again and check the status as well.
-3. Now check the IP address of the client machine.
-4. In your DH
-
-
-**************************** steps to install ubuntu server ***********************************************************
-
-
-install and configure Ubuntu Server on Windows using Virtual Box
-
-I. Prerequisite
-
-1. Download virtual box using the website “virtualbox.org”.
-2. Install virtual box on your windows host.
-3. Download iso file of Ubuntu Server by visiting the website “ubuntu.com”.
-
-II. Creating Ubuntu Virtual Machine (VM)
-
-1. Start VirtualBox and click on New button to create new virtual machine.
-2. Enter name of VM 
-Ex. “Ubuntu_Server”
-3. Select OS Type: “Linux”
-4. Select Version: “Ubuntu(64bit)”
-5. Then Click to Next button.
-6. Set VM’s memory size to 2GB and click on Next button.
-7. Choose VM’s hard disk option to “Create a virtual hard disk now”.
-8. Adjust the disk size to 50GB.
-9. Click Next button.
-10. Click Finish button.
-
-
-III. Setting up boot device
-
-1. Select the VM from left panel on Virtual Box, right click and open Settings.
-2. Click on Storage title and Select CD ROM icon under the Controller: IDE.
-3. Click on CD ROM icon under the Attribute on the left side to select.
-4. Choose Virtual Optical Disk File.
-5. Locate the Ubuntu CD image file you have.
-
-IV. Setting up Network Interface.
-
-1. Click on Network title.
-2. While Enable Network Adapter selected, choose Attached to NAT then click Ok.
-Compiled By: M.N.M Shakoor Supervised By: W. Sriwathsan 2
-Note: NAT (Network Address Translation) - which get the IP from host and change/translate 
-into another private IP and assign to guest.
-While using NAT, guest can access the host but host can’t access the guest. While the bridge 
-is bidirectional 
-
-V. Installing Ubuntu Server.
-
-
-1) Initial installation settings.
-
-1) Start “Ubuntu_Server”.
-
-2) Select “Try or Install Ubuntu server”.
-
-3) Choose your preferred language as “English”.
-
-4) Choose “Continue without updating”.
-
-5) In keyboard configuration, select Keyboard layout and variant as “English (Us)”.
-
-6) In type of install, select “Ubuntu Server” and select “Search for third-party 
-drivers” in Additional options.
-
-7) In the Network Connection, keep the setting as it is.
-
-8) For Configure proxy, leave the proxy address blank.
-
-9) For Ubuntu mirror address, leave the default as it is.
-
-2) Disk Configuration.
-
-1. In guided storage configuration Select “Custom storage layout”.
-Note: Now we will do LVM partition on this disk drive. In Linux system, we need to create 
-minimum (/boot) boot, swap, (/) root, (/home) home, (/var) var and (/usr) usr partition. 
-Among these partitions, /boot and swap should be out of LVM. So, at first, we will do these 
-two partitions before creating LVM.
-2. Creating “Boot Partition”.
-2.1. Select “Free Space” from “AVAILABLE DEVICES”. 
-2.2. Select “Add GPT Partition” option.
-2.3. From Adding GPT Partition to “VBOX_HARDDISK_VBxxxxxxxxxxxxxxxx” section, Put size (for example: 1024M) for the boot partition in 
-Size input box.
-2.4. Choose partition format (for example: ext4) from Format drop down menu.
-2.5. Choose /boot from Mount drop down menu.
-2.6. Now select Create option.
-
-3. Creating “Swap Partition”.
-
-3.1. Select “Free Space” from “AVAILABLE DEVICES”. 
-3.2. Select Add “GPT Partition” option.
-3.3. From Adding GPT Partition to “VBOX_HARDDISK_VBxxxxxxxxxxxxxxxx” section, Put size (for example: 8GB) for the swap partition in Size 
-input box.
-3.4. Choose swap from the Format drop down menu.
-
-3.5. Now select Create option.
-✓ Boot partition and Swap partition will now be created and will be available in “FILE 
-SYSTEM SUMMERY” section of Storage Configuration window.
-
-4. Create “LVM partition”.
-
-4.1. Select “Free Space” from “AVAILABLE DEVICES”. 
-4.2. Select Add “GPT Partition” option.
-4.3. From Adding GPT Partition to “VBOX_HARDDISK_VBxxxxxxxxxxxxxxxx” section, Put size (for example: 40G) for the LVM partition in Size 
-input box.
-4.4. Choose leave unformatted from Format drop down menu.
-4.5. Now select Create option and hit Enter key.
-Note: Now Create volume group (LVM) option will be enabled and we will be able to do LVM 
-partition. To create LVM partition, at first, we have to create Volume Group (VG).
-
-
-5. Creating “LVM Volume Group (VG)”.
-
-5.1. From “AVAILABLE DEVICES” section, select “Create volume group 
-(LVM)” option.
-5.2. Enter a name for “volume group name” or keep the default one if you wish.
-Ex: “lvmgroup”
-5.3. Now select partition option from Devices section and press Space key to 
-enable it.
-5.4. Select Create option and hit Enter key.
-✓ Volume group (lvmgroup) will now be available in “AVAILABLE DEVICES” section. 
-We will now be able to create LVM partition from here.
-
-6. Creating “LVM Root (/) Partition”.
-
-6.1. Select the free space in “AVALIABLE DEVICES” created volume group 
-(lvmgroup).
-6.2. Select Create Logical Volume option.
-6.3. Enter a name for root partition as “lv-root” in Name input field.
-6.4. Put size (for example: 15G) for the root partition in Size input box.
-6.5. Choose partition format (for example: ext4) from Format dropdown menu.
-6.6. Now select Create option.
-
-✓ Root (/) partition will now be created and will be available in “FILE SYSTEM 
-SUMMERY” section of Storage Configuration window.
-✓ Similarly, create /usr, /home and /var LVM partition from volume group “lvmgroup”.
-✓ Use the below table to create the /var, /usr, /home partition
-Partition Name Size Format Mount
-/usr lv-usr 5GB ext4 /usr
-/home lv-home 5GB ext4 /home
-Compiled By: M.N.M Shakoor Supervised By: W. Sriwathsan 4
-/var lv-var 16GB ext4 /var
-7. Now select the Done option. The system will now ask to confirm the destructive
- 
-action Select Continue to confirm the action.
-
-3) Assign Profile Setup
-• Your Name: Server_PC
-• Server Name: serverpc
-• Username: student
-• Password: student@1234
-
-4) Final Configuration
-
-• Select the “Install OpenSSH Server” option and Select Done option to start 
-installation.
-
-5) Finalizing Ubuntu Server Installation
-
-
-1. Check ssh is installed in your Guest OS (Linux Server)
-• $ssh
-✓ If ssh not installed 
-
-I. Install ssh on Guest Os
-• $sudo apt install openssh-server
-
-2. Verify the ssh service is running.
-• $sudo systemctl status ssh.
-
-3. If the status is not active (running) enable the ssh server and start it.
-• $sudo systemctl enable ssh
-• $sudo systemctl start ssh
-
-VII. Install Putty
-1. Download putty using the website “https://www.putty.org/”.
-2. Install putty on your windows host.
-
-VIII. Virtual Box Settings
-
-1. Go to 
-
-Oracle Virtual Box Manager → Machine → Settings → Network → Adapter 1 →
-Advanced → Port Forwarding → Add
-
-• Name : ssh
-• Protocol : TCP
-• Host IP : 127.0.0.1
-• Host Port : 2222 (or any unused port)
-• Guest IP : 10.0.2.15 (Depends on your guest IP address)
-• Guest Port : 22
-
-2. Then click OK.
-
-3. Go to the putty on windows machine.
-
-• In hostname or ip address : 127.0.0.1
-• Port : 2222
-• Connection type : ssh
-4. Then click open.
-
-
-
-
-*********************************************  change permission ******************************************************
-
-
-
-chmod permissions filename/directory
-
-
-
-# Give read, write, and execute permissions to the owner
-chmod u+rwx filename
-
-# Remove write and execute permissions for the group
-chmod g-wx filename
-
-# Give read and execute permissions to others
-chmod o+rx filename
-
-# Alternatively, you can use numeric values to set permissions directly.
-# For example, to set read, write, and execute permissions for the owner,
-# read and execute permissions for the group, and read-only permissions for others:
-chmod 751 filename
-
-
-
-
-*********************************************  run levels of ubuntu server ******************************************************
-
-
-
-
-1. How do you booting and shutting down of Ubuntu Server
-
-    To boot Ubuntu Server, you start the server or restart it if it's already running. The server will go through the boot process and load the operating system.
-
-    To shut down Ubuntu Server, you can use the "shutdown" command with appropriate options, such as "sudo shutdown now" to shut down immediately or "sudo shutdown -r now" to restart the server immediately.
-
-2. Explain different run levels (level 0 to level 6) in Linux
-
-    Run Level 0: Halt - System shutdown.
-    Run Level 1: Single User Mode - Single-user mode, used for system maintenance and recovery.
-    Run Level 2: Multi-User Mode without Networking - User-defined.
-    Run Level 3: Multi-User Mode with Networking - The standard multi-user mode with networking enabled.
-    Run Level 4: Not used/user-defined.
-    Run Level 5: Multi-User Mode with Graphical Interface - The standard multi-user mode with a graphical desktop.
-	
-	
-	
-	
-    Run Level 6: Reboot - System restart.
-
-************************************** Install Apache, MySQL & PHP on Ubuntu Server **************************************
-
-1. Install Apache webserver.
-
-	1.1. Update Ubuntu Server
+----------------------------------rsa---------------------------------
+public class RSA {
+
+    public static void main(String[] args) {
+        double p = 2;
+        double q = 7;
 		
-		sudo apt update
+        double msg = 5;
 
-	1.2. Upgrade Ubuntu Server
-	
-		sudo apt upgrade -y
+        double n = p * q;
+        double phi = (p - 1) * (q - 1);
 
-	1.3. Install Apache web server
-		
-		sudo apt install apache2 -y
+        double e = 2;
+        while (e < phi) {
+            if (gcd(e, phi) == 1) {
+                break;
+            } else {
+                e++;
+            }
+        }
 
+        System.out.println("e value = " + e);
 
-	1.4. Check Apache webserver running or not.
-	
-		sudo systemctl status apache2
+        double d = 0;
+        for (int i = 1; i <= 100; i++) {
+            double x = 1 + (i * phi);
+            if (x % e == 0) {
+                d = x / e;
+                break;
+            }
+        }
 
+        System.out.println("d value = " + d);
 
-*****************************port forwarding->  php			TCP				127.0.0.1					80					10.0.2.15			80***********
-*****************************port forwarding->  ssh			TCP				127.0.0.1					2222				10.0.2.15			22***********
+        System.out.println("Message data = " + msg);
 
-	1.5. To test apache web server, open your web browser and access the apache test page by
-	navigating to http://localhost/ If you can see Apache2 Ubuntu Default Page, Apache server is working
-	
-		sudo apt install curl -y
-		curl http://localhost
-		
-		
-2. Install MySQL
-	2.1. To install MySQL on Ubuntu run
-	
-		sudo apt install mysql-server -y
+        // Encryption: c = (msg^e) % n
+        double c = Math.pow(msg, e);
+        c = c % n;
+        System.out.println("Encrypted data = " + c);
 
-	2.2. Verify if MySQL service is running or not by
-		
-		sudo systemctl status mysql
+        // Decryption: m = (c^d) % n
+        double m = Math.pow(c, d);
+        m = m % n;
+        System.out.println("Original Message sent = " + m);
+    }
 
-
-	2.3. To view passwords of MySQL
-		sudo mysql_secure_installation
-
-	2.4. To add the password to mysql root.
-		sudo mysql -u root -p
-		ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password';
-		
-
-
-	2.5. Check the password is set properly to the MySQL First leave from logged in MySQL Again log-in to the MySQL
-		exit
-		sudo mysql -u root -p
-
-
-3. Install PHP
-	3.1. Install PHP
-	
-		sudo apt install php libapache2-mod-php -y
-
-	
-	
-	3.2. After installing PHP, create info.php in the apache root document folder
-	In the created file add the following line
-	
-		sudo nano /var/www/html/info.php
-
-	
-	
-	
-	3.3. In the created file add the following line
-		
-		
-			<?php
-			phpinfo();
-			?>
-
-		
-	3.4. And save and quite the file.
-	
-		To save the file in nano, press Ctrl + O, then Enter to confirm. To exit nano, press Ctrl + X.
-	
-	3.5. Restart the apache service to take effect the changes
-	
-		sudo systemctl restart apache2
-
-	
-	3.6. Test PHP
-	Open up your web browser and navigate to localhost:8080 /info.php in address bar ✓ Check the version of PHP $ php -version
-	
-		php -v
-
-	
-	
-	
-	
-	
-<?php
-phpinfo();
-?>
-
-3.4. And save and quite the file.
-
-3.5. Restart the apache service to take effect the changes
-
-3.6. Test PHP
-
-php-TCP-127.0.0.1-80.10.0.2.15-80
-http://127.0.0.1/info.php
-
-Open up your web browser and navigate to localhost:8080 /info.php in address bar
-✓ Check the version of PHP
-$ php -version
-
-
-Now we are going to create an HTML form to take your username and 
-password to store in a mysql database using PHP
-
-1. Create an html form in the location of /var/www/html
-
-<!DOCTYPE html>
-<html>
-<head>
-<title>Form site</title>
-</head>
-<body>
-<form method="post" action="myform.php">
-Username: <input type="text" name="uname"><br><br>
-Password: <input type="password" name="upassword"><br><br>
-<input type="submit" value="Submit">
-</form>
-</body>
-</html>
-
-
-2. Save and exit the file
-
-3. Next create a database and table in mysql
-
-3.1. Login to mysql
-
-
-3.2. Enter the password for user root (This will be your class password: 'Testwebpw1$')
-
-3.3. Create a database with the name myDB.
-
-3.4. View the list of databases
-
-3.5. Create a table ‘user in database ‘myDB’
-
-3.6. Check the structure of the above created table
-
-
-
-# Login to MySQL
-mysql -u root -p
-
-# Enter the password for user root ('Testwebpw1$')
-
-# Create a database with the name myDB
-CREATE DATABASE myDB;
-
-# View the list of databases
-SHOW DATABASES;
-
-# Use the myDB database
-USE myDB;
-
-# Create a table 'user' in the database 'myDB'
-CREATE TABLE user (
-    id INT(11) AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL
-);
-
-# Check the structure of the above-created table
-DESCRIBE user;
-
-# Exit MySQL
-exit;
-
-
-
-3.7. Finally create the php file which connect both html and mysql database.
-
-<?php
-$host = "localhost";
-$dbusername = "root";
-$dbpassword = "Testwebpw1$";
-$dbname = "myDB";
-//Create Connection
-$conn = new mysqli ($host, $dbusername, $dbpassword, 
-$dbname);
-$username = $_POST['uname'];
-$password = $_POST['upassword'];
-//Insert value in database table
-$sql = "INSERT INTO user (name, password) values 
-('$username', '$password')";
-if($conn->query($sql)){
-echo "New record is inserted successfully";
+    public static double gcd(double a, double b) {
+        while (b != 0) {
+            double temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+    }
 }
-else {
-echo "Error: ". $sql . "<br>". $conn->error;
+------------------------railfence----------------------------------------------
+
+class RailFence {
+
+    public static char[][] fillingTheArrayWithCharacter(String text, int key,char ch){
+      
+        char[][] rail = new char[key][text.length()];
+        for (int i = 0; i < key; i++){
+            for(int j=0; j<text.length(); j++){
+                rail[i][j] = ch;
+            }
+        }
+        return rail;
+    }
+    
+    public static String encryptRailFence(String text, int key) {
+
+        char[][] rail = fillingTheArrayWithCharacter(text,key, '\n');
+
+        boolean dirDown = false;
+        int row = 0, col = 0;
+
+        for (int i = 0; i < text.length(); i++) {
+
+            // check the direction of flow
+            // reverse the direction if we've just
+            // filled the top or bottom rail
+				if (row == 0 || row == key - 1)
+                dirDown = !dirDown;
+
+            // fill the corresponding alphabet
+            rail[row][col++] = text.charAt(i);
+
+            // find the next row using direction flag
+            if (dirDown)
+                row++;
+            else
+                row--;
+        }
+
+        // now we can construct the cipher using the rail matrix
+        String result = "";
+        for (int i = 0; i < key; i++)
+            for (int j = 0; j < text.length(); j++)
+                if (rail[i][j] != '\n')
+                    result += (rail[i][j]);
+
+        return result;
+    }
+
+    
+    public static String decryptRailFence(String cipher, int key) {
+
+        char[][] rail =  fillingTheArrayWithCharacter(cipher,key,'\n');
+        
+        boolean dirDown = true;
+
+        int row = 0, col = 0;
+
+        // mark the places with '*'
+        for (int i = 0; i < cipher.length(); i++) {
+            // check the direction of flow
+            if (row == 0)
+                dirDown = true;
+            if (row == key - 1)
+                dirDown = false;
+
+            // place the marker
+            rail[row][col++] = '*';
+
+            // find the next row using direction flag
+            if (dirDown)
+                row++;
+            else
+                row--;
+        }
+
+        // now we can construct the fill the rail matrix
+        int index = 0;
+        for (int i = 0; i < key; i++)
+            for (int j = 0; j < cipher.length(); j++)
+                if (rail[i][j] == '*' && index < cipher.length())
+                    rail[i][j] = cipher.charAt(index++);
+
+        String result = "";
+
+        row = 0;
+        col = 0;
+        for (int i = 0; i < cipher.length(); i++) {
+            // check the direction of flow
+            if (row == 0)
+                dirDown = true;
+            if (row == key - 1)
+                dirDown = false;
+
+            // place the marker
+            if (rail[row][col] != '*')
+                result += rail[row][col++];
+
+            // find the next row using direction flag
+            if (dirDown)
+                row++;
+            else
+                row--;
+        }
+        return result;
+    }
+
+    
+    public static void main(String[] args) {
+
+        System.out.println("Encrypted Message: ");
+        System.out.println(encryptRailFence("Cometothedinnerparty", 2));
+        System.out.println(encryptRailFence("Cometothedinerparty", 3));
+        
+		System.out.println("\nDecrypted Message: ");
+		System.out.println(decryptRailFence("Cmtteinratoeohdnepry", 2));
+		System.out.println(decryptRailFence("Cteeroeohdnratmtipy", 3));	
+    }
 }
-$conn->close();
-?>
-
-4. Save the file and exit
-
-5. Now open the HTML form and test it using your browser.
-
-http://127.0.0.1/form.html
+-------------------------------------polyalpha---------------------------------------
 
 
+class PolyalphabeticCipher{
 
-*******http://localhost:8080/info.php*******
+static String generateKey(String str, String key){
+	int x = str.length();
+
+	for (int i = 0; ; i++)
+	{
+		if (x == i)
+			i = 0;
+		if (key.length() == str.length())
+			break;
+			key += (key.charAt(i));
+	}
+	return key;
+}
+
+static String encryption(String str, String key){
+
+	String cipherText = "";
+	for (int i = 0; i < str.length(); i++){
+		int x = (str.charAt(i)+ key.charAt(i))%26;
+		// convert into alphabets(ASCII)
+		x += 'A';
+
+		cipherText+=(char)(x);
+	}
+	return cipherText;
+}
+
+static String decrypt(String cipherText, String key){
+
+	String plaintext = "";
+	for (int i = 0; i < cipherText.length(); i++){
+		// converting in range 0-25
+		int x = (cipherText.charAt(i) - key.charAt(i) + 26) %26;
+
+		// convert into alphabets(ASCII)
+		x += 'A';
+		plaintext+=(char)(x);
+	}
+	return plaintext;
+}
+
+public static void main(String []args){
+	String str = "HELLOWORLD";
+	String keyword = "CAR";
+
+	//String str = LowerToUpper(Str);
+	//String keyword = LowerToUpper(Keyword);
+	String key = generateKey(str, keyword);
+	System.out.print("Key :: ");
+	System.out.println(key);
+
+	String cipherText = encryption(str, key);
+	System.out.print("Cipher text :: ");
+	System.out.println(cipherText);
+
+	String originalText = decrypt(cipherText, key);
+	System.out.print("Original text :: ");
+	System.out.println(originalText);
 
 
 
+}
+}
+------------------------------------otp----------------------------------------------
+
+import java.util.Scanner;
+public class OneTimePad {
+
+
+public static void main(String []args){
+	char alpha[] ={'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+	Scanner sc = new Scanner(System.in);
+	System.out.print("Enter Plain text :: ");
+	String plainText = sc.nextLine();
+
+	System.out.print("Enter Key :: ");
+	String key = sc.nextLine();
+
+	System.out.print("Cipher text :: ");
+	String ciphertxt = encryption(alpha, plainText, key);
+	System.out.println(ciphertxt);
+
+	System.out.print("Plain text :: ");
+	String plainmessage = decryption(alpha, ciphertxt, key);
+	System.out.print(plainmessage);
+
+
+}
+
+public static String encryption(char alpha[],String message, String key){
+	String ciphertext = "";  //chiper txt ek store kragnn variable ekk (define variable to store chiper text)
+
+	for(int i= 0; i<message.length(); i++){//palaweni akura hoynna
+		char msgletter = message.charAt(i);  //first letter of plaintext
+
+		for(int j= 0; j<alpha.length;j++){ // find index of plain text letters
+			if(msgletter==alpha[j]){           // message eke letter eka alphabet eke letter ekt samana unoth key eke first ek gnnw
+				char keyletter = key.charAt(i); // first letter of key
+				
+				for(int n= 0; n<alpha.length;n++){ // key eke letters wala index hoynn
+					if(keyletter==alpha[n]){
+						ciphertext += alpha[(j+n)%26];  // j = index of plaintext n= index of key
+						break;
+					}
+				}
+			}
+		}
+	}		
+	return ciphertext;
+
+}
+public static String decryption(char alpha[],String message, String key){
+	String originaltext = "";
+	for(int i= 0; i<message.length(); i++){
+		char msgletter = message.charAt(i);
+
+		for(int j= 0; j<alpha.length;j++){
+			if(msgletter==alpha[j]){
+				char keyletter = key.charAt(i);
+				
+				for(int n= 0; n<alpha.length;n++){
+					if(keyletter==alpha[n]){
+						int num = j-n;
+						if(num<0){
+							num=num+26;
+							originaltext += alpha[num%26];
+						}
+						else{
+							originaltext += alpha[num%26];
+						}
+					}
+				}
+			}
+		}
+	}
+	return originaltext;
+}
+}
+
+-----------------------------------------monoalpha---------------------------------------------
+
+import java.util.Scanner;
+public class Monoalphabetic{
+
+public static void encryption (String message, char plain[], char cipher[]){
+	message = message.toLowerCase();
+	System.out.println("plan text :: "+message);
+	System.out.print("cipher text: ");
+	for(int i = 0; i<message.length(); i++){
+		for (int j=0; j<26; j++){
+			if(message.charAt(i)==plain[j]){ //is postions are same
+				System.out.print(cipher[j]);
+			}
+		}
+	}
+	
+}
+public static void decryption (String ciphermessage, char plain[], char cipher[]){
+	
+	System.out.println("Chipher message :: "+ciphermessage);
+	System.out.println("plain text: ");
+	for(int i = 0; i<ciphermessage.length(); i++){
+		for (int j=0; j<26; j++){
+			if(ciphermessage.charAt(i)==cipher[j]){
+				System.out.println(plain[j]);
+			}
+		}
+	}
+	
+}
+public static void main(String [] args){
+	char plainAlpha[] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+	char cipherAlpha[] = {'D','K','V','Q','F','I','B','J','W','P','E','S','C','X','H','T','M','Y','A','U','O','L','R','G','Z','N'};
+	Scanner scan = new Scanner(System.in);
+	
+	System.out.println("Enter word:: ");
+	String originalMessage = scan.nextLine();
+	System.out.println("Enter Option:: ");
+	System.out.println("1. Encryption  ");
+	System.out.println("2. Decryption ");
+	System.out.println("Option:: ");
+	int opt = scan.nextInt();
+	if(opt==1){
+		encryption(originalMessage,plainAlpha,cipherAlpha);
+	}else if(opt==2){
+		decryption(originalMessage,plainAlpha,cipherAlpha);
+	}else{
+		System.out.println("Invalid option..... ");
+	}
+}
+	
+	
+}
+------------------------------------------columnar-------------------------------------------
+
+import java.util.Scanner;
+public class Monoalphabetic{
+
+public static void encryption (String message, char plain[], char cipher[]){
+	message = message.toLowerCase();
+	System.out.println("plan text :: "+message);
+	System.out.print("cipher text: ");
+	for(int i = 0; i<message.length(); i++){
+		for (int j=0; j<26; j++){
+			if(message.charAt(i)==plain[j]){ //is postions are same
+				System.out.print(cipher[j]);
+			}
+		}
+	}
+	
+}
+public static void decryption (String ciphermessage, char plain[], char cipher[]){
+	
+	System.out.println("Chipher message :: "+ciphermessage);
+	System.out.println("plain text: ");
+	for(int i = 0; i<ciphermessage.length(); i++){
+		for (int j=0; j<26; j++){
+			if(ciphermessage.charAt(i)==cipher[j]){
+				System.out.println(plain[j]);
+			}
+		}
+	}
+	
+}
+public static void main(String [] args){
+	char plainAlpha[] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+	char cipherAlpha[] = {'D','K','V','Q','F','I','B','J','W','P','E','S','C','X','H','T','M','Y','A','U','O','L','R','G','Z','N'};
+	Scanner scan = new Scanner(System.in);
+	
+	System.out.println("Enter word:: ");
+	String originalMessage = scan.nextLine();
+	System.out.println("Enter Option:: ");
+	System.out.println("1. Encryption  ");
+	System.out.println("2. Decryption ");
+	System.out.println("Option:: ");
+	int opt = scan.nextInt();
+	if(opt==1){
+		encryption(originalMessage,plainAlpha,cipherAlpha);
+	}else if(opt==2){
+		decryption(originalMessage,plainAlpha,cipherAlpha);
+	}else{
+		System.out.println("Invalid option..... ");
+	}
+}
+	
+	
+}
+----------------------------------------------------ceasercipher-----------------------------------------------
+import java.util.*;
+
+public class CeaserEncryption{
+	
+	public static final String alpha = "abcdefghijklmnopqrstuvwxyz"; //Define the constant with including English alphabetic letters
+	
+public static String encrypt(String message, int shiftkey){
+	
+	message = message.toLowerCase(); //Convert to original plain text into lowercase
+	String cipherText = "";
+	
+	for(int i=0; i<message.length();i++){
 		
+		char ch = message.charAt(i);   //Find the first character of plain text
+		int charposition = alpha.indexOf(ch);  // Find the character position of that character of plain text in the constant
+		
+		int keyvalue = (charposition+shiftkey)%26;  //Add the shift key value with character position after that mod by 26 then store because of length of alphabet constant is 26
+		char replacevalue = alpha.charAt(keyvalue);  //Find the character using replacement from alphabet Constant
+		
+		cipherText+=replacevalue;
+	}
+	return cipherText;  //Return the chipertext
+}
+public static String decrypt(String message, int shiftkey){
+	
+	message = message.toLowerCase(); //Convert to original plain text into lowercase
+	String decryptText = "";
+	
+	for(int i=0; i<message.length();i++){
+		
+		char ch = message.charAt(i);  
+		int charposition = alpha.indexOf(ch);  
+		
+		int keyvalue = (charposition-shiftkey)%26;  
+		
+		if(keyvalue<0){
+			keyvalue = alpha.length()+keyvalue; //if keyvalue minus we have to add alphebet length 
+		}
+		
+		char decryptValue = alpha.charAt(keyvalue);
+		decryptText += decryptValue;
+		
+	}
+	return decryptText;
+}
+public static void main(String[] args){
+	
+	Scanner sc = new Scanner(System.in);
+	int key = 0;
+	
+	System.out.println("Enter String for encryption :: ");
+	String originalmessage = sc.nextLine();
+	
+	System.out.println("\n\n Enter key:: ");
+	key = sc.nextInt();
+	
+	String encryptmessage = encrypt(originalmessage,key);
+	System.out.println("Encript message :: "+encryptmessage);
+	
+	String decryptmessage = decrypt(encryptmessage,key);
+	System.out.println("Decript message :: "+decryptmessage);
+}
+}
+
+
+
+
+
+
+
