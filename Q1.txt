@@ -1,25 +1,301 @@
+// 2020/2021 geussing
 #include <iostream>
 using namespace std;
 
 int main()
 {
+    int n, i;
+    cout << "Enter your number: ";
+    cin >> n;
 
+    for (i = 1; i <= n / 2; i++)
+    {
+        if (n % i == 0)
+        {
+            cout << i << " , ";
+        }
+    }
+
+    return 0;
+}
+
+
+
+
+
+
+
+#include<iostream>
+using namespace std;
+
+int main(){
+	int cal[2]={0,0};
+	string name[3]={"A","B","C"};
+	int arr[3][2]={{2,6},{3,9},{9,8}};
+	for(int i=0;i<3;i++){
+		cout<<name[i];
+		for(int j=0;j<2;j++){
+			cout<<" "<<arr[i][j]<<" ";
+			cal[j]=arr[i][j];
+		}
+		for(int k=1;k<2;k++){
+			cal[k]=cal[k]+cal[k-1];
+		}
+		cout<<cal[1];
+		cout<<endl;
+	}
 	return 0;
 }
 
 
 
 
-//star pattern 1
 
-******	
-*****
-***
-**
-*
-for(int i = 6; i >= 1; i--) {
-        for(int j = 1; j <= i; j++) {
-            cout << '*';
+
+
+
+
+
+
+
+
+
+
+  //2019,2020 past paper
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int rows;
+
+    cout << "Enter the number of rows: ";
+    cin >> rows;
+
+    // Outer loop for rows
+    for (int i = 1; i <= rows; i++) {
+        // Inner loop for printing numbers in each row
+        for (int j = 1; j <= i; j++) {
+            cout << j << " ";
         }
-        cout << std::endl;
+        cout << endl;
     }
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    const int size = 10;
+    int numbers[size];
+
+    // Prompt the user to enter 10 integers
+    cout << "Enter 10 integers:" << endl;
+    for (int i = 0; i < size; i++) {
+        cout << "Enter number " << i + 1 << ": ";
+        cin >> numbers[i];
+    }
+
+    // Task 1: Print all the integers
+    cout << "All the integers: ";
+    for (int i = 0; i < size; i++) {
+        cout << numbers[i] << " ";
+    }
+    cout << endl;
+
+    // Task 2: Print the positive numbers
+    cout << "Positive numbers: ";
+    for (int i = 0; i < size; i++) {
+        if (numbers[i] > 0) {
+            cout << numbers[i] << " ";
+        }
+    }
+    cout << endl;
+
+    // Task 3: Print the negative numbers
+    cout << "Negative numbers: ";
+    for (int i = 0; i < size; i++) {
+        if (numbers[i] < 0) {
+            cout << numbers[i] << " ";
+        }
+    }
+    cout << endl;
+
+    // Task 4: Print the odd numbers
+    cout << "Odd numbers: ";
+    for (int i = 0; i < size; i++) {
+        if (numbers[i] % 2 != 0) {
+            cout << numbers[i] << " ";
+        }
+    }
+    cout << endl;
+
+    // Task 5: Print the even numbers
+    cout << "Even numbers: ";
+    for (int i = 0; i < size; i++) {
+        if (numbers[i] % 2 == 0) {
+            cout << numbers[i] << " ";
+        }
+    }
+    cout << endl;
+
+    // Task 6: Find the maximum value
+    int maxNumber = numbers[0];
+    for (int i = 1; i < size; i++) {
+        if (numbers[i] > maxNumber) {
+            maxNumber = numbers[i];
+        }
+    }
+    cout << "Maximum value: " << maxNumber << endl;
+
+    // Task 7: Find the minimum value
+    int minNumber = numbers[0];
+    for (int i = 1; i < size; i++) {
+        if (numbers[i] < minNumber) {
+            minNumber = numbers[i];
+        }
+    }
+    cout << "Minimum value: " << minNumber << endl;
+
+    // Task 8: Count and print the total number of zeros
+    int countZeros = 0;
+    for (int i = 0; i < size; i++) {
+        if (numbers[i] == 0) {
+            countZeros++;
+        }
+    }
+    cout << "Total number of zeros: " << countZeros << endl;
+
+    return 0;
+}
+
+ 
+ 
+ 
+ 
+ 
+ 
+  //2018,2019 pst ppr
+  
+  #include <iostream>
+using namespace std;
+
+const int ROWS = 4;
+const int COLS = 3;
+
+int main() {
+    double sales[ROWS][COLS];
+
+    // Task 1: Assign values for all array cells
+    cout << "Enter the sales data for the 2D array:" << endl;
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            cout << "Enter the sales value for row " << i + 1 << " column " << j + 1 << ": ";
+            cin >> sales[i][j];
+        }
+    }
+
+    // Task 2: Find the summation of elements in each row
+    double rowSum[ROWS] = {0.0};
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            rowSum[i] += sales[i][j];
+        }
+    }
+
+    // Task 3: Find the summation of elements in each column
+    double colSum[COLS] = {0.0};
+    for (int j = 0; j < COLS; j++) {
+        for (int i = 0; i < ROWS; i++) {
+            colSum[j] += sales[i][j];
+        }
+    }
+
+    // Task 4: Find the largest value in each row
+    double largestInRow[ROWS];
+    for (int i = 0; i < ROWS; i++) {
+        largestInRow[i] = sales[i][0];
+        for (int j = 1; j < COLS; j++) {
+            if (sales[i][j] > largestInRow[i]) {
+                largestInRow[i] = sales[i][j];
+            }
+        }
+    }
+
+    // Task 5: Find the largest value in the 2D array
+    double largestValue = sales[0][0];
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            if (sales[i][j] > largestValue) {
+                largestValue = sales[i][j];
+            }
+        }
+    }
+
+    // Task 6: Print the results
+    cout << "Summation of elements in each row:" << endl;
+    for (int i = 0; i < ROWS; i++) {
+        cout << "Row " << i + 1 << ": " << rowSum[i] << endl;
+    }
+
+    cout << "Summation of elements in each column:" << endl;
+    for (int j = 0; j < COLS; j++) {
+        cout << "Column " << j + 1 << ": " << colSum[j] << endl;
+    }
+
+    cout << "Largest value in each row:" << endl;
+    for (int i = 0; i < ROWS; i++) {
+        cout << "Row " << i + 1 << ": " << largestInRow[i] << endl;
+    }
+
+    cout << "Largest value in the 2D array: " << largestValue << endl;
+
+    return 0;
+}
+
+
+
+
+
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+    int firstInt, secondInt;
+
+    // Task 1 and 2: Require the user to enter two integers within the specified range
+    do {
+        cout << "Enter two integers (1-20), with the second integer equal to or larger than the first integer: ";
+        cin >> firstInt >> secondInt;
+
+        if (firstInt < 1 || firstInt > 20 || secondInt < 1 || secondInt > 20) {
+            cout << "Invalid input! Both integers must be between 1 and 20. Please try again." << endl;
+        } else if (secondInt < firstInt) {
+            cout << "Invalid input! The second integer must be equal to or larger than the first integer. Please try again." << endl;
+        }
+    } while ((firstInt < 1 || firstInt > 20 || secondInt < 1 || secondInt > 20) || (secondInt < firstInt));
+
+    // Task 3: Print a table of integers and their square roots
+    cout << "Integer\tSquare Root" << endl;
+    cout << "---------------------" << endl;
+    for (int i = firstInt; i <= secondInt; i++) {
+        double squareRoot = sqrt(i);
+        cout << i << "\t" << squareRoot << endl;
+    }
+
+    return 0;
+}
+
+
